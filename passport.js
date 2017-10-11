@@ -1,0 +1,53 @@
+const Passport = require('passport');
+const FacebookStrategy = require('passport-facebook').Strategy;
+const Model = require('./sequelize');
+const bcrypt = require('./bcrypt');
+require('dotenv').config();
+
+module.exports = (app) => {
+
+    app.use(Passport.initialize());
+    app.use(Passport.session());
+
+    Passport.use('facebook', new FacebookStrategy({
+        clientID: process.env.FACEBOOK_APP_ID,
+        clientSecret: process.env.FACEBOOK_APP_SECRET,
+        callbackURL: "http://localhost:8080/auth/facebook/callback",
+        profileFields: ['id', 'displayName', 'name', 'gender', 'photos', 'email', 'friends', 'birthday','profileUrl','hometown']
+      },
+      function(accessToken, refreshToken, profile, cb) {
+          bcrypt.hashPassword(profile.id).then((id) => {
+              Model.table.findOrCreate({where : {
+                    profileURL : profile._json.link
+                }, defaults : {
+                    name : profile._json.name,
+                    firstName : profile._json.first_name,
+                    lastName: profile._json.last_name,
+                    gender : gender(profile._json.gender),
+                    photo : profile.photos[0].value,
+                    fbid : id,
+                    birthday : profile._json.birthday,
+                    hometown : profile._json.hometown.name,
+                    availability : 'Unavailable'
+                }}).spread((user, created) => {
+                    return cb(null, user);
+                });
+      }).catch((err) => {console.log(err)});
+    }));
+    
+    Passport.serializeUser(function(user, done) {
+        done(null, user);
+      });
+      
+    Passport.deserializeUser(function(user, done) {
+        done(null, user);
+    });
+};
+
+function gender(input) {
+    if(input === 'male') {
+        return 'Gentlemen';
+    } else {
+        return 'Lady';
+    }
+}

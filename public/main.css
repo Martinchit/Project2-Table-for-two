@@ -1,0 +1,52 @@
+body {
+    height : 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)) , url('./bk.jpeg') fixed no-repeat;
+    background-size: 100% 100%;
+}
+
+h1, h2 {
+    text-align: center;
+    color : #AB2096;
+    margin: 40px;
+    font-family: 'Chewy', cursive;
+    letter-spacing: 3px;
+}
+
+h1 {
+    font-size: 10vmax;
+}
+
+h2 {
+    font-size: 6vmax;
+}
+
+.header {
+    margin: 50px auto 40px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.list {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+input {
+    width: 150px;
+    font-family: 'Cinzel', serif;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#foot {
+    height: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+

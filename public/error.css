@@ -1,0 +1,38 @@
+body {
+    height : 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)) , url('./alone.jpeg') fixed no-repeat;
+    background-size: 100% 100%;
+}
+
+h1 {
+    text-align: center;
+    color : #8A0707;
+    margin: 20px;
+    font-family: 'Chewy', cursive;
+    letter-spacing: 3px;
+    font-size: 10vw;
+}
+
+#header {
+    margin: 150px auto 40px auto;
+}
+
+form {
+    text-align: center;
+}
+
+input {
+    font-family: 'Cinzel', serif;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#foot {
+    height: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+

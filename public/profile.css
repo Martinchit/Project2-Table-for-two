@@ -1,0 +1,45 @@
+body {
+    height : 100%;
+    width: 100%;
+    background-color: #F2F2F2;
+}
+
+img {
+    width : 150px;
+    height : 150px;
+    margin-bottom : 20px; 
+}
+
+.container {
+    margin : 40px auto;
+    margin-top : 100px;
+    text-align : center;
+}
+
+h2, span {
+    font-family : 'Candal';
+    margin : 20px auto;
+    color : #3E661A;
+    font-size: 6vmin;
+}
+
+input, a {
+    width: 150px;
+    font-family: 'Cinzel', serif;
+    font-weight: bolder;
+    cursor : pointer;
+    margin-bottom: 20px;
+}
+
+i {
+    margin-bottom : 20px;
+    color : #0A3581;
+}
+
+#foot {
+    height : 20px;
+    position : fixed;
+    bottom : 0;
+    width : 100%;
+    text-align : center;
+}

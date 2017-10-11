@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Josefin+Sans|Libre+Barcode+128+Text" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Candal|Chewy|Love+Ya+Like+A+Sister" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:8080/tab.jpg">
+    <link rel="stylesheet" href="./map.css">
+    <script src="https://use.fontawesome.com/31a0418ff2.js"></script>
+    <title>Map</title>
+</head>
+<body>
+    {{!-- {{> header}} --}}
+
+    {{{body}}}
+    
+    {{> footer}}
+
+    <script>
+        var map, infoWindow;
+        var hk = {lat: 22.2849, lng: 114.1589};
+        function initMap() {
+            
+            infoWindow = new google.maps.InfoWindow;
+            
+            
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                console.log(pos);
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: pos,
+                    zoom: 15
+                });
+
+                $(function () {
+                    var socket = io();
+                    socket.emit('geo', pos);
+                    google.maps.event.addListener(map, 'click', (event) => {
+                        socket.emit('click', event);
+                    }) ;    
+                    socket.on('click', function(event){
+                        var maker = new google.maps.Marker({
+                            position : event.latLng,
+                            map : map
+                        });
+                    });
+                });
+
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Accelerate');
+                infoWindow.open(map);
+
+                var marker1 = new google.maps.Marker({
+                position: hk,
+                map: map,
+                title:"Hello World!"
+                });
+
+                var info = new google.maps.InfoWindow({
+                    content : '<h1>Hi, here is IFC</h1><br><h2>DNLM</h2><br><button>Click</button>'
+                });
+                marker1.addListener('click', () => {
+                    info.open(map, marker1);
+                });
+                
+                }
+                , function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+                }
+            );
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                                    'Error: The Geolocation service failed.' :
+                                    'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+
+            
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcLMxBDBXPAPBJzybe_BGkHIa6FUV1UeY&callback=initMap"></script>
+</body>
+</html>
