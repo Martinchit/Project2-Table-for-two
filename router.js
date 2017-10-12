@@ -36,12 +36,11 @@ module.exports = (express, io) => {
 
     router.get('/map', isLoggedIn, (req,res) => {
         res.render('map', {layout : 'google'});
-        
     });
 
     router.get('/logout', (req,res) => {
         req.logout();
-        res.render('logout', {layout : 'error'});
+        res.render('logout', {layout : 'logoutPage'});
     });
 
     router.get('/auth/facebook', passport.authenticate('facebook', {scope : ['user_photos', 'user_friends', 'user_birthday', 'user_hometown']}));
@@ -56,27 +55,31 @@ module.exports = (express, io) => {
             client.hgetall('list', (err, data) => {
                 if(data === null) {
                     var obj = {};
-                    profile.geo = geo
-                    obj[profile.name] = profile;
+                    profile.geo = geo;
+                    obj[socket.request.session] = profile;
                     client.hmset('list', obj);
-                    io.on('maker', obj);
+                    io.emit('marker', obj);
                 } else {
                     var obj = data;
-                    profile.geo = geo
-                    obj[profile.name] = profile;
+                    profile.geo = geo;
+                    obj[socket.request.session] = profile;
                     client.hmset('list', obj);
                     io.emit('marker', obj);
                 }
             });
         });
-        // socket.on('disconnect', () => {
-        //     client.hgetall('list', (data) => {
-        //         var obj = data;
-        //         delete obj[profile.name];
-        //         client.hmset('list', obj);
-        //         io.emit('userLeave', profile.name);
-        //     });
-        // });
+        socket.on('userLogout', (err,data) => {
+            client.hgetall('list', (err, list) => {
+                var obj = list;
+                delete obj[socket.request.session];
+                if(Object.keys(obj).length === 0) {
+                    client.del('list');
+                } else {
+                    client.hmset('list', obj);
+                }
+            })
+            io.emit('delMarker', socket.request.session);
+        });
     });
 
     return router;

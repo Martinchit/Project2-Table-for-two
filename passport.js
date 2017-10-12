@@ -24,7 +24,7 @@ module.exports = (app) => {
                     firstName : profile._json.first_name,
                     lastName: profile._json.last_name,
                     gender : gender(profile._json.gender),
-                    photo : profile.photos[0].value,
+                    photo : profile._json.picture.data.url,
                     fbid : id,
                     birthday : profile._json.birthday,
                     hometown : profile._json.hometown.name,

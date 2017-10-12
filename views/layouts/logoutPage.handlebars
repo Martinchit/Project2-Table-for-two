@@ -6,13 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <!-- <link rel="stylesheet" href="./logout.css"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:8080/tab.jpg">
+    <link rel="stylesheet" href="./error.css">
+    <script src="https://use.fontawesome.com/31a0418ff2.js"></script>
     <title>Logout</title>
 </head>
 <body>
-    <div style='text-align : center; padding-top : 40px'>
-        <a href="/" style='color : #8A0707; font-size : 50px; text-decoration : none'>Try Again? &nbsp;<i class="fa fa-history" aria-hidden="true"></i></a>
-    </div>
+    
+    {{{body}}}
+
+    {{> footer}}
+
     <script>
         $(function () {
             var socket = io();

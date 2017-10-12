@@ -41,26 +41,31 @@
                         var socket = io();
                         socket.emit('geo', pos); 
                         socket.on('marker', (data) => {
-                            console.log(data);
                             for(let i in data) {
-                                if(list[data[i].fbid] === undefined) {
+                                if(list[i] === undefined) {
                                     var marker = new google.maps.Marker({
                                         position : data[i].geo,
                                         map : map
                                     })
-                                    list[data[i].fbid] = marker;
+                                    list[i] = marker;
                                     var info = new google.maps.InfoWindow({
                                         content : '<img src=' + data[i].photo + '><br><h1>' + data[i].name + '</h1>'
                                     });
                                     marker.addListener('click', () => {
                                         info.open(map, marker);
                                     });
-                                    console.log(list)
-                                }
-                                
+                                }    
                             }
+                        });
+                        socket.on('delMarker', (data) => {
+                        if(list[data] !== undefined) {
+                            var marker = list[data];
+                            delete list[data];
+                            marker.setMap(null);
+                        }
                         })
                     });
+                    
                 }
                 , function() {
                 handleLocationError(true, infoWindow, map.getCenter());
@@ -72,11 +77,6 @@
             }
 
         }
-
-        //socket.on('userLeave', (err, data) => {
-        //    var marker = list[data];
-        //    marker.setMap(null);
-        //})
 
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
