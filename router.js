@@ -87,15 +87,35 @@ module.exports = (express, app, io) => {
             client.hgetall('user', (err,data) => {
                 if(data === null || data[JSON.stringify(socket.request.session.cookie)] === undefined) {
                     client.hmset('user', JSON.stringify(socket.request.session.cookie), JSON.stringify(obj[socket.request.session.cookie]));
+                } else {
+                    var obj = {};
+                    obj[socket.request.session.cookie] = socket.request.session.passport;
+                    var newObj = data;
+                    newObj[JSON.stringify(socket.request.session.cookie)] = JSON.stringify(obj[socket.request.session.cookie]);
+                    client.hmset('user', newObj);
                 }
             });
         });
         socket.on('geo', (geo) => {
+            client.hgetall('onlineList', (data) => {
+                if(data === null) {
+                    var obj = {};
+                    obj[socket.request.session.cookie] = socket.request.session.passport;
+                    obj[socket.request.session.cookie].geo = geo;
+                    client.hmset('onlineList', JSON.stringify(socket.request.session.cookie), JSON.stringify(obj[socket.request.session.cookie]));
+                } else {
+                    var obj = {};
+                    obj[socket.request.session.cookie] = socket.request.session.passport;
+                    obj[socket.request.session.cookie].geo = geo;
+                    var newObj = data;
+                    newObj[JSON.stringify(socket.request.session.cookie)] = JSON.stringify(obj[socket.request.session.cookie]);
+                    client.hmset('onlineList', newObj);
+                    io.emit('marker', obj);
+                }
+            })
             var obj = {};
-            obj[socket.request.session.cookie] = socket.request.session.passport;
-            obj[socket.request.session.cookie].geo = geo;
-            client.hmset('onlineList', JSON.stringify(socket.request.session.cookie), JSON.stringify(obj[socket.request.session.cookie]));
-            io.emit('marker', obj);
+           
+            
         });
         socket.on('userLogout', (data) => {
             client.hgetall('onlineList', (err, list) => {
@@ -127,6 +147,18 @@ module.exports = (express, app, io) => {
                 obj.msg = msg;
                 io.emit(id, obj);
             });
+        });
+        socket.on('disconnect', () => {
+            client.hgetall('onlineList', (err, list) => {
+                var obj = list;
+                delete obj[JSON.stringify(socket.request.session.cookie)];
+                if(Object.keys(obj).length === 0) {
+                    client.del('onlineList');
+                } else {
+                    client.hmset('onlineList', obj);
+                }
+            });
+            io.emit('delMarker', socket.request.session);
         });
         
     });
