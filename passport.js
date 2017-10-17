@@ -1,6 +1,6 @@
 const Passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const Model = require('./sequelize');
+const Model = require('./models');
 const bcrypt = require('./bcrypt');
 require('dotenv').config();
 
@@ -17,7 +17,7 @@ module.exports = (app) => {
       },
       function(accessToken, refreshToken, profile, cb) {
           bcrypt.hashPassword(profile.id).then((id) => {
-              Model.table.findOrCreate({where : {
+              Model.user.findOrCreate({where : {
                     profileURL : profile._json.link
                 }, defaults : {
                     name : profile._json.name,
@@ -28,7 +28,7 @@ module.exports = (app) => {
                     fbid : id,
                     birthday : profile._json.birthday,
                     hometown : profile._json.hometown.name,
-                    availability : 'Unavailable'
+                    email : profile._json.email
                 }}).spread((user, created) => {
                     return cb(null, user);
                 });

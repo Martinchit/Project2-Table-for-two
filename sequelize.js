@@ -14,9 +14,10 @@ const Table = connection.define('User', {
     hometown : sequelize.STRING,
     photo : sequelize.STRING,
     profileURL : sequelize.STRING,
-    availability : sequelize.STRING,
+    email : sequelize.STRING,
+    socket_id : sequelize.STRING
 });
 
-Table.sync({force : true});
+// Table.sync({force : true});
 
 module.exports.table = Table;

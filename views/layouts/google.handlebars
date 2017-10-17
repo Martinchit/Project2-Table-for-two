@@ -21,73 +21,7 @@
     
     {{> footer}}
 
-    <script>
-        var map, infoWindow, list = {};
-        function initMap() {
-            
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-
-                    map = new google.maps.Map(document.getElementById('map'), {
-                        center: pos,
-                        zoom: 15
-                    });
-
-                    $(function () {
-                        var socket = io();
-                        socket.emit('geo', pos); 
-                        socket.on('marker', (data) => {
-                            for(let i in data) {
-                                if(list[i] === undefined) {
-                                    var marker = new google.maps.Marker({
-                                        position : data[i].geo,
-                                        map : map
-                                    })
-                                    list[i] = marker;
-                                    var info = new google.maps.InfoWindow({
-                                        content : '<img src=' + data[i].photo + '><br><h1>' + data[i].name + '</h1>'
-                                    });
-                                    marker.addListener('click', () => {
-                                        info.open(map, marker);
-                                    });
-                                }    
-                            }
-                        });
-                        socket.on('delMarker', (data) => {
-                        if(list[data] !== undefined) {
-                            var marker = list[data];
-                            delete list[data];
-                            marker.setMap(null);
-                        }
-                        })
-                    });
-                    
-                }
-                , function() {
-                handleLocationError(true, infoWindow, map.getCenter());
-                }
-            );
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
-
-        }
-
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                                    'Error: The Geolocation service failed.' :
-                                    'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
-        }
-
-            
-    </script>
+    <script src='/map.js'></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcLMxBDBXPAPBJzybe_BGkHIa6FUV1UeY&callback=initMap"></script>
 </body>
 </html>

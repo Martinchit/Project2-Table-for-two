@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "prosgres",
+    "password": "",
+    "database": "database_development",
+    "host": "localhost",
+    "dialect": "prosgres"
+  },
+  "test": {
+    "username": "prosgres",
+    "password": "",
+    "database": "database_test",
+    "host": "localhost",
+    "dialect": "prosgres"
+  },
+  "production": {
+    "username": "progres",
+    "password": "",
+    "database": "database_production",
+    "host": "localhost",
+    "dialect": "prosgres"
+  }
+}

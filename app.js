@@ -8,7 +8,7 @@ const passport = require('passport');
 const session = require('express-session');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const router = require('./router')(express, io);
+const router = require('./router')(express, app, io);
 const RedisStore = require("connect-redis")(session);
 const setupPassport = require('./passport');
 
@@ -16,7 +16,7 @@ var sessionMiddleware = session({
     store: new RedisStore({
         host: 'localhost',
         port: 6379
-    }), // XXX redis server config
+    }),
     secret: "keyboard cat",
 });
 

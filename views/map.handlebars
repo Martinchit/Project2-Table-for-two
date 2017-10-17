@@ -1,5 +1,21 @@
 <h1>Check out who is available today</h1>
-<div id="map" style='height: 400px; width: 50%;'></div>
-<form action="/logout">
-    <input type="submit" value='logout'>
+
+<div id="map"></div>
+
+<h2>Distance Search</h2>
+
+<form id='list' method="POST">
+    <input type="submit" class="btn btn-danger button" value='1 KM'>
+    <input type="submit" class="btn btn-danger button" value="5 KM">
+    <input type="submit" class="btn btn-danger button" value="10 KM">
+    <input type="submit" class="btn btn-danger button" value="20 KM">
+    <input type="submit" class="btn btn-danger button" value="30 KM">
 </form>
+
+<div id="users">
+
+</div>
+
+<div id='logout'>
+<a href="/logout">Log Out</a>
+</div>
