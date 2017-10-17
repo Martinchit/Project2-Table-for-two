@@ -85,7 +85,7 @@ module.exports = (express, app, io) => {
             var obj = {};
             obj[socket.request.session.cookie] = socket.request.session.passport;
             client.hgetall('user', (err,data) => {
-                if(data === null || data === undefined) {
+                if(data === null) {
                     client.hmset('user', JSON.stringify(socket.request.session.cookie), JSON.stringify(obj[socket.request.session.cookie]));
                 } else {
                     var obj = {};
