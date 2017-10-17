@@ -31,7 +31,7 @@ module.exports = (app) => {
                     email : profile._json.email
                 }}).spread((user, created) => {
                     return cb(null, user);
-                });
+                }).catch((err) => {console.log(err)});
       }).catch((err) => {console.log(err)});
     }));
     
