@@ -82,10 +82,10 @@ module.exports = (express, app, io) => {
             Model.user.update({socket_id : socket.id }, {where : {email : socket.request.session.passport.user.email}});
         });
         socket.on('user', (err, data) => {
-            var obj = {};
-            obj[socket.request.session.cookie] = socket.request.session.passport;
             client.hgetall('user', (err,data) => {
                 if(data === null) {
+                    var obj = {};
+                    obj[socket.request.session.cookie] = socket.request.session.passport;
                     client.hmset('user', JSON.stringify(socket.request.session.cookie), JSON.stringify(obj[socket.request.session.cookie]));
                 } else {
                     var obj = {};
@@ -103,6 +103,7 @@ module.exports = (express, app, io) => {
                     obj[socket.request.session.cookie] = socket.request.session.passport;
                     obj[socket.request.session.cookie].geo = geo;
                     client.hmset('onlineList', JSON.stringify(socket.request.session.cookie), JSON.stringify(obj[socket.request.session.cookie]));
+                    io.emit('marker', obj);
                 } else {
                     var obj = {};
                     obj[socket.request.session.cookie] = socket.request.session.passport;

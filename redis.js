@@ -13,6 +13,10 @@ var b = { latitude: 33.8650, longitude: 151.2094 }
 // 714504.18 (in meters) 
 console.log(haversine(a, b))
 
+client.hgetall('user', (data) => {
+    console.log(data);
+})
+
 
 // // client.hmset('list', "Peter", '{lat: 22.3964, lng: 114.1095}', "Mary", '{lat: 22.2776, lng: 114.1654}', "John", '{lat: 22.2809, lng: 114.1836}');
 // client.hgetall("list", function (err, obj) {

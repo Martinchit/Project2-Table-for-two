@@ -69,7 +69,7 @@ $(document).ready(() => {
         event.preventDefault();
         var distance = Number($(event.target).val().replace(/\D/g, '')) * 1000;
         var location = pos;
-        $.post('http://localhost:8080/onlineuser', {
+        $.post('https://128.199.210.113.nip.io/onlineuser', {
             lat : location.lat,
             lng : location.lng,
             perference : distance
@@ -91,7 +91,7 @@ $(document).ready(() => {
         $(event.target).replaceWith("<p class='newTag'>Wait for reply</p>");
     });
     socket.on('talkInvitation', (data) => {
-        var url = 'http://localhost:8080/chat?' + data.uuid;
+        var url = 'https://128.199.210.113.nip.io/chat?' + data.uuid;
         console.log(url)
         $('body').append("<div class='chatInvitation'></div>");
         $('.chatInvitation').append("<img src=" + data.user.photo + ">");
