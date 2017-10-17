@@ -79,7 +79,7 @@ module.exports = (express, app, io) => {
 
     io.on('connection', function(socket) {
         socket.on('socketId', () => {
-            Model.table.update({socket_id : socket.id }, {where : {email : socket.request.session.passport.user.email}});
+            Model.user.update({socket_id : socket.id }, {where : {email : socket.request.session.passport.user.email}});
         });
         socket.on('user', (err, data) => {
             var obj = {};
@@ -110,7 +110,7 @@ module.exports = (express, app, io) => {
             io.emit('delMarker', socket.request.session);
         });
         socket.on('matchClicked', (data) => {
-            Model.table.findOne({where : {email : data}}).then((data) => {
+            Model.user.findOne({where : {email : data}}).then((data) => {
                 const uuid = require('uuid/v4');
                 var obj = socket.request.session.passport;
                 obj.uuid = uuid();
