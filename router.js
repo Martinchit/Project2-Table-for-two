@@ -113,7 +113,7 @@ module.exports = (express, app, io) => {
                     client.hmset('onlineList', newObj);
                     io.emit('marker', obj);
                 }
-            })
+            });
             var obj = {};
            
             

@@ -92,7 +92,6 @@ $(document).ready(() => {
     });
     socket.on('talkInvitation', (data) => {
         var url = 'https://128.199.210.113.nip.io/chat?' + data.uuid;
-        console.log(url)
         $('body').append("<div class='chatInvitation'></div>");
         $('.chatInvitation').append("<img src=" + data.user.photo + ">");
         $('.chatInvitation').append("<p>" + data.user.firstName + " : <br>Do you wanna have dinner together tonight?</p>");
@@ -112,12 +111,13 @@ $(document).ready(() => {
         $(event.target).closest('.chatInvitation').remove();
         $('.newTag').replaceWith('<p>Fail</p>');
     });
+    socket.on('canTalk', (data) => {
+        console.log(data);
+        window.open(data, 'Chat Box');
+    });
 });
 
-socket.on('canTalk', (data) => {
-    console.log(data);
-    window.open(data, 'Chat Box');
-});
+
 
 
 function getZodiacSign(day, month) {
