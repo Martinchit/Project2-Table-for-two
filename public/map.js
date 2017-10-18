@@ -28,7 +28,7 @@ function initMap() {
                         });
                         list[i] = marker;
                         var info = new google.maps.InfoWindow({
-                            content : "<div class='marker'><img src=" + data[i].user.photo + "><br><button class=" + data[i].user.email + " value=" + data[i].user.email + ">Match</button></div><br><h3>" + data[i].user.name + "</h3>"
+                            content : "<div class='marker'><img src=" + data[i].user.photo + "><br><button class='key' value=" + data[i].user.email + ">Match</button></div><br><h3>" + data[i].user.name + "</h3>"
                         });
                         marker.addListener('click', () => {
                             info.open(map, marker);
@@ -84,7 +84,7 @@ $(document).ready(() => {
             });
         });
     });
-    $('#map').on('click', 'button', (event) => {
+    $('#map').on('click', '.key', (event) => {
         event.preventDefault();
         socket.emit('matchClicked', $(event.target).val());
         $(event.target).replaceWith("<p class='newTag'>Wait for reply</p>");
