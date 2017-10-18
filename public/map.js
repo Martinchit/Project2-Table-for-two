@@ -14,21 +14,21 @@ function initMap() {
             
             socket.on('marker', (data) => {
                 for(let i in data) {
-                    console.log(data[i]);
+                    if(list[i] === undefined) {
                         var detail = JSON.parse(data[i]);
-                        var session = i;
                         var marker = new google.maps.Marker({
                             position : detail.geo,
                             map : map
                         });
-                        // list[i] = marker;
+                        list[i] = marker;
                         var info = new google.maps.InfoWindow({
                             content : "<div class='marker'><img src=" + detail.user.photo + "><br><button class='key' value=" + detail.user.email + ">Match</button></div><br><h3>" + detail.user.name + "</h3>"
                         });
                         marker.addListener('click', () => {
                             info.open(map, marker);
                         });
-                    }    
+                    }  
+                }  
             });
 
             map = new google.maps.Map(document.getElementById('map'), {
@@ -39,13 +39,13 @@ function initMap() {
             socket.emit('socketId');
             socket.emit('geo', pos); 
             
-            // socket.on('delMarker', (data) => {
-            //     if(list[data] !== undefined) {
-            //         var marker = list[data];
-            //         delete list[data];
-            //         marker.setMap(null);
-            //     }
-            // });
+            socket.on('delMarker', (data) => {
+                if(list[data] !== undefined) {
+                    var marker = list[data];
+                    delete list[data];
+                    marker.setMap(null);
+                }
+            });
             
         }, function() {
         handleLocationError(true, infoWindow, map.getCenter());

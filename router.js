@@ -159,7 +159,7 @@ module.exports = (express, app, io) => {
                     client.hmset('onlineList', obj);
                 }
             });
-            io.emit('delMarker', socket.request.session);
+            io.emit('delMarker', socket.request.session.passport.user.email);
         });
         
     });
