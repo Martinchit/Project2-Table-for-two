@@ -15,13 +15,13 @@ function initMap() {
             socket.on('marker', (data) => {
                 for(let i in data) {
                     if(list[i] === undefined) {
-                        var detail = JSON.parse(data[i]);
-                        var marker = new google.maps.Marker({
+                        let detail = JSON.parse(data[i]);
+                        let marker = new google.maps.Marker({
                             position : detail.geo,
                             map : map
                         });
                         list[i] = marker;
-                        var info = new google.maps.InfoWindow({
+                        let info = new google.maps.InfoWindow({
                             content : "<div class='marker'><img src=" + detail.user.photo + "><br><button class='key' value=" + detail.user.email + ">Match</button></div><br><h3>" + detail.user.name + "</h3>"
                         });
                         marker.addListener('click', () => {
