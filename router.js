@@ -136,7 +136,7 @@ module.exports = (express, app, io) => {
             });
         });
         socket.on('talk', (data) => {
-            socket.emit(ocket.request.session.passport.user.email, data);
+            socket.emit(socket.request.session.passport.user.email, data);
         });
         socket.on('id', (id) => {
             socket.on(id, (msg) => {
