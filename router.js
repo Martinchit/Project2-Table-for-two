@@ -138,7 +138,9 @@ module.exports = (express, app, io) => {
             });
         });
         socket.on('talk', (data) => {
-            socket.emit('talkAccepted', data);
+            Model.user.findOne({where : {email : data.id}}).then((user)=> {
+                io.to(user.dataValues.socket_id).emit('talkAccepted', data.url);
+            });
         });
         socket.on('id', (id) => {
             socket.on(id, (msg) => {

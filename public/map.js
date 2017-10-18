@@ -97,7 +97,7 @@ $(document).ready(() => {
         
         var url = 'https://128.199.210.113.nip.io/chat?' + data.uuid;
         $('body').append("<div class='chatInvitation'></div>");
-        $('.chatInvitation').append("<img src=" + data.user.photo + ">");
+        $('.chatInvitation').append("<img value=" + data.user.email + "src=" + data.user.photo + ">");
         $('.chatInvitation').append("<p>" + data.user.firstName + " : <br>Do you wanna have dinner together tonight?</p>");
         $('.chatInvitation').append("<div id='choice'>");
         $('#choice').append("<button target='_blank' id='yes' value=" + url + "><i class='fa fa-check fa-4x'  aria-hidden='true'></i></button>");
@@ -105,9 +105,11 @@ $(document).ready(() => {
     });
     $('body').on('click','#yes', (event) => {
         var url = $(event.target).closest('#yes').val();
+        var email = $(event.target).closest('img').val();
+        var obj = {url : url, id : email};
         $(event.target).closest('.chatInvitation').remove();
         $('.newTag').replaceWith('<p>Matched</p>');
-        socket.emit('talk', url);
+        socket.emit('talk', obj);
         window.open(url);
     });
     $('body').on('click','#no', (event) => {
