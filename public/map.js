@@ -11,14 +11,7 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: pos,
-                zoom: 15
-            });
-
-            socket.emit('socketId');
-            socket.emit('geo', pos); 
+            
             socket.on('marker', (data) => {
                 for(let i in data) {
                         var detail = data[i];
@@ -35,8 +28,16 @@ function initMap() {
                             info.open(map, marker);
                         });
                     }    
-                
             });
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: pos,
+                zoom: 15
+            });
+
+            socket.emit('socketId');
+            socket.emit('geo', pos); 
+            
             // socket.on('delMarker', (data) => {
             //     if(list[data] !== undefined) {
             //         var marker = list[data];
