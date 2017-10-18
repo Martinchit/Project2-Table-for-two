@@ -1,6 +1,7 @@
 var map, infoWindow, list = {};
 var socket = io();
 var pos;
+var user;
 
 function initMap() {
     
@@ -93,7 +94,7 @@ $(document).ready(() => {
         $(event.target).replaceWith("<p class='newTag'>Wait for reply</p>");
     });
     socket.on('talkInvitation', (data) => {
-        user = data.user.email;
+        
         var url = 'https://128.199.210.113.nip.io/chat?' + data.uuid;
         $('body').append("<div class='chatInvitation'></div>");
         $('.chatInvitation').append("<img src=" + data.user.photo + ">");
@@ -116,7 +117,7 @@ $(document).ready(() => {
     });
 });
 
-socket.on(user, (data) => {
+socket.on('talkAccepted', (data) => {
     console.log(data);
     window.open(data);
 });
