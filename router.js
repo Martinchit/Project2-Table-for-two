@@ -48,15 +48,15 @@ module.exports = (express, app, io) => {
         var ref = [];
         client.hgetall('onlineList', (err,data) => {
             for(var i in data) {
-                if(JSON.parse(data[i]).geo.lat !== ownGeo.lat && JSON.parse(data[i]).geo.lng !== ownGeo.lng) {
+                // if(JSON.parse(data[i]).geo.lat !== ownGeo.lat && JSON.parse(data[i]).geo.lng !== ownGeo.lng) {
                     var distance = haversine(ownGeo, JSON.parse(data[i]).geo);
                     if(distance < req.body.perference) {
                         var obj = JSON.parse(data[i]);
-                        obj.distance = String(distance * 1000) + ' km';
+                        obj.distance = String(distance / 1000) + ' km';
                         ref.push(obj);
                     }
                 }
-            }
+            // }
             res.send(ref);
         });
     });
@@ -111,7 +111,7 @@ module.exports = (express, app, io) => {
                     var newObj = data;
                     newObj[socket.request.session.passport.user.email] = JSON.stringify(obj[socket.request.session.cookie]);
                     client.hmset('onlineList', newObj);
-                    io.emit('marker', obj);
+                    io.emit('marker', newObj);
                 }
             });
             var obj = {};
@@ -131,11 +131,11 @@ module.exports = (express, app, io) => {
             io.emit('delMarker', socket.request.session);
         });
         socket.on('matchClicked', (data) => {
-            Model.user.findOne({where : {email : data}}).then((data) => {
+            Model.user.findOne({where : {email : data}}).then((info) => {
                 const uuid = require('uuid/v4');
                 var obj = socket.request.session.passport;
                 obj.uuid = uuid();
-                io.to(data.dataValues.socket_id).emit('talkInvitation', obj);
+                io.to(info.dataValues.socket_id).emit('talkInvitation', obj);
             });
         });
         
