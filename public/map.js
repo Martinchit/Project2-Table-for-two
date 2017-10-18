@@ -105,7 +105,7 @@ $(document).ready(() => {
     });
     $('body').on('click','#yes', (event) => {
         var url = $(event.target).closest('#yes').val();
-        var email = $(event.target).closest('#choice').val();
+        var email = $('#choice').val();
         var obj = {link : url, id : email};
         console.log(obj);
         $(event.target).closest('.chatInvitation').remove();
