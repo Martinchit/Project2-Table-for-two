@@ -68,7 +68,7 @@ module.exports = (express, app, io) => {
     router.get('/logout', (req,res) => {
         client.hgetall('onlineList', (err, list) => {
             var obj = list;
-            delete obj[socket.request.session.passport.user.email];
+            delete obj[req.user.email];
             if(Object.keys(obj).length === 0) {
                 client.del('onlineList');
             } else {
