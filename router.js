@@ -74,9 +74,9 @@ module.exports = (express, app, io) => {
             } else {
                 client.hmset('onlineList', obj);
             }
+            req.logout();
         });
         io.emit('marker', req.user.email);
-        req.logout();
         res.render('logout', {layout : 'logoutPage'});
     });
 
