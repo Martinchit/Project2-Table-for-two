@@ -1,7 +1,7 @@
 var map, infoWindow, list = {};
 var socket = io();
 var pos;
-
+var user;
 
 function initMap() {
     
@@ -21,7 +21,6 @@ function initMap() {
             socket.emit('geo', pos); 
             socket.on('marker', (data) => {
                 for(let i in data) {
-                    if(list[i] === undefined) {
                         var session = i;
                         var marker = new google.maps.Marker({
                             position : data[i].geo,
@@ -35,7 +34,7 @@ function initMap() {
                             info.open(map, marker);
                         });
                     }    
-                }
+                
             });
             socket.on('delMarker', (data) => {
             if(list[data] !== undefined) {
@@ -91,6 +90,7 @@ $(document).ready(() => {
         $(event.target).replaceWith("<p class='newTag'>Wait for reply</p>");
     });
     socket.on('talkInvitation', (data) => {
+        user = data.user.email;
         var url = 'https://128.199.210.113.nip.io/chat?' + data.uuid;
         $('body').append("<div class='chatInvitation'></div>");
         $('.chatInvitation').append("<img src=" + data.user.photo + ">");
@@ -111,7 +111,7 @@ $(document).ready(() => {
         $(event.target).closest('.chatInvitation').remove();
         $('.newTag').replaceWith('<p>Fail</p>');
     });
-    socket.on('canTalk', (data) => {
+    socket.on(user, (data) => {
         console.log(data);
         window.open(data);
     });

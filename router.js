@@ -114,9 +114,6 @@ module.exports = (express, app, io) => {
                     io.emit('marker', newObj);
                 }
             });
-            var obj = {};
-           
-            
         });
         socket.on('userLogout', (data) => {
             client.hgetall('onlineList', (err, list) => {
@@ -138,9 +135,8 @@ module.exports = (express, app, io) => {
                 io.to(info.dataValues.socket_id).emit('talkInvitation', obj);
             });
         });
-        
         socket.on('talk', (data) => {
-            io.to(socket.id).emit('canTalk', data);
+            io.emit(ocket.request.session.passport.user.email, data);
         });
         socket.on('id', (id) => {
             socket.on(id, (msg) => {
