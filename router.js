@@ -86,12 +86,12 @@ module.exports = (express, app, io) => {
                 if(data === null) {
                     var obj = {};
                     obj[socket.request.session.cookie] = socket.request.session.passport;
-                    client.hmset('user', JSON.stringify(socket.request.session.cookie), JSON.stringify(obj[socket.request.session.cookie]));
+                    client.hmset('user', socket.request.session.passport.user.email, JSON.stringify(obj[socket.request.session.cookie]));
                 } else {
                     var obj = {};
                     obj[socket.request.session.cookie] = socket.request.session.passport;
                     var newObj = data;
-                    newObj[JSON.stringify(socket.request.session.cookie)] = JSON.stringify(obj[socket.request.session.cookie]);
+                    newObj[socket.request.session.passport.user.email] = JSON.stringify(obj[socket.request.session.cookie]);
                     client.hmset('user', newObj);
                 }
             });
@@ -102,14 +102,14 @@ module.exports = (express, app, io) => {
                     var obj = {};
                     obj[socket.request.session.cookie] = socket.request.session.passport;
                     obj[socket.request.session.cookie].geo = geo;
-                    client.hmset('onlineList', JSON.stringify(socket.request.session.cookie), JSON.stringify(obj[socket.request.session.cookie]));
+                    client.hmset('onlineList', socket.request.session.passport.user.email, JSON.stringify(obj[socket.request.session.cookie]));
                     io.emit('marker', obj);
                 } else {
                     var obj = {};
                     obj[socket.request.session.cookie] = socket.request.session.passport;
                     obj[socket.request.session.cookie].geo = geo;
                     var newObj = data;
-                    newObj[JSON.stringify(socket.request.session.cookie)] = JSON.stringify(obj[socket.request.session.cookie]);
+                    newObj[socket.request.session.passport.user.email] = JSON.stringify(obj[socket.request.session.cookie]);
                     client.hmset('onlineList', newObj);
                     io.emit('marker', obj);
                 }
@@ -121,7 +121,7 @@ module.exports = (express, app, io) => {
         socket.on('userLogout', (data) => {
             client.hgetall('onlineList', (err, list) => {
                 var obj = list;
-                delete obj[JSON.stringify(socket.request.session.cookie)];
+                delete obj[socket.request.session.passport.user.email];
                 if(Object.keys(obj).length === 0) {
                     client.del('onlineList');
                 } else {
@@ -152,7 +152,7 @@ module.exports = (express, app, io) => {
         socket.on('disconnect', () => {
             client.hgetall('onlineList', (err, list) => {
                 var obj = list;
-                delete obj[JSON.stringify(socket.request.session.cookie)];
+                delete obj[socket.request.session.passport.user.email];
                 if(Object.keys(obj).length === 0) {
                     client.del('onlineList');
                 } else {

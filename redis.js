@@ -13,15 +13,17 @@ var b = { latitude: 33.8650, longitude: 151.2094 }
 // 714504.18 (in meters) 
 console.log(haversine(a, b))
 
-// client.hgetall('onlineList', (err,data) => {
-//     var obj = data;
-//     console.log(data)
-//     obj.i = 1;
-//     client.hmset('onlineList', obj);
-//     client.hgetall('onlineList', (err, data) => {
-//         console.log(data);
-//     })
-// })
+client.hgetall('onlineList', (err,data) => {
+    var obj = data;
+    var a ={};
+    a[a] = {adf:123};
+    console.log(data)
+    obj.a = JSON.stringify(a[a]);
+    client.hmset('onlineList', obj);
+    client.hgetall('onlineList', (err, data) => {
+        console.log(data);
+    })
+})
 
 
 // // client.hmset('list', "Peter", '{lat: 22.3964, lng: 114.1095}', "Mary", '{lat: 22.2776, lng: 114.1654}', "John", '{lat: 22.2809, lng: 114.1836}');

@@ -113,7 +113,7 @@ $(document).ready(() => {
     });
     socket.on('canTalk', (data) => {
         console.log(data);
-        window.open(data, 'Chat Box');
+        window.open(data);
     });
 });
 
