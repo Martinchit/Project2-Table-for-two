@@ -97,7 +97,7 @@ $(document).ready(() => {
         
         var url = 'https://128.199.210.113.nip.io/chat?' + data.uuid;
         $('body').append("<div class='chatInvitation'></div>");
-        $('.chatInvitation').append("<img class='photo' value=" + data.user.email + "src=" + data.user.photo + ">");
+        $('.chatInvitation').append("<img class='photo' value=" + data.user.email + " src=" + data.user.photo + ">");
         $('.chatInvitation').append("<p>" + data.user.firstName + " : <br>Do you wanna have dinner together tonight?</p>");
         $('.chatInvitation').append("<div id='choice'>");
         $('#choice').append("<button target='_blank' id='yes' value=" + url + "><i class='fa fa-check fa-4x'  aria-hidden='true'></i></button>");
