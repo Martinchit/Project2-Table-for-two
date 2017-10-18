@@ -103,8 +103,8 @@ $(document).ready(() => {
         var url = $(event.target).closest('#yes').val();
         $(event.target).closest('.chatInvitation').remove();
         $('.newTag').replaceWith('<p>Matched</p>');
-        window.open(url);
         socket.emit('talk', url);
+        window.open(url);
     });
     $('body').on('click','#no', (event) => {
         event.preventDefault();

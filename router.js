@@ -66,6 +66,16 @@ module.exports = (express, app, io) => {
     });
 
     router.get('/logout', (req,res) => {
+        client.hgetall('onlineList', (err, list) => {
+            var obj = list;
+            delete obj[socket.request.session.passport.user.email];
+            if(Object.keys(obj).length === 0) {
+                client.del('onlineList');
+            } else {
+                client.hmset('onlineList', obj);
+            }
+        });
+        io.emit('delMarker', socket.request.session);
         req.logout();
         res.render('logout', {layout : 'logoutPage'});
     });
@@ -115,18 +125,6 @@ module.exports = (express, app, io) => {
                 }
             });
         });
-        socket.on('userLogout', (data) => {
-            client.hgetall('onlineList', (err, list) => {
-                var obj = list;
-                delete obj[socket.request.session.passport.user.email];
-                if(Object.keys(obj).length === 0) {
-                    client.del('onlineList');
-                } else {
-                    client.hmset('onlineList', obj);
-                }
-            });
-            io.emit('delMarker', socket.request.session);
-        });
         socket.on('matchClicked', (data) => {
             Model.user.findOne({where : {email : data}}).then((info) => {
                 const uuid = require('uuid/v4');
@@ -146,6 +144,7 @@ module.exports = (express, app, io) => {
             });
         });
         socket.on('disconnect', () => {
+            
             client.hgetall('onlineList', (err, list) => {
                 var obj = list;
                 delete obj[socket.request.session.passport.user.email];
