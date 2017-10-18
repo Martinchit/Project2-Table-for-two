@@ -120,7 +120,9 @@ module.exports = (express, app, io) => {
                     obj[socket.request.session.cookie] = socket.request.session.passport;
                     obj[socket.request.session.cookie].geo = geo;
                     var newObj = data;
+                    console.log(newObj);
                     newObj[socket.request.session.passport.user.email] = JSON.stringify(obj[socket.request.session.cookie]);
+                    client.del('onlineList');
                     client.hmset('onlineList', newObj);
                     io.emit('marker', newObj);
                 }
