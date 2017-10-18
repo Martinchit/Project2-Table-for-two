@@ -114,12 +114,12 @@ $(document).ready(() => {
         $(event.target).closest('.chatInvitation').remove();
         $('.newTag').replaceWith('<p>Fail</p>');
     });
-    socket.on(user, (data) => {
-        console.log(data);
-        window.open(data);
-    });
 });
 
+socket.on(user, (data) => {
+    console.log(data);
+    window.open(data);
+});
 
 
 
