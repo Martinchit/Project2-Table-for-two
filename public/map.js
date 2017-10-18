@@ -1,7 +1,6 @@
 var map, infoWindow, list = {};
 var socket = io();
 var pos;
-var user;
 
 function initMap() {
     
@@ -67,6 +66,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 $(document).ready(() => {
+    var user;
     $('#list').on('click', '.button', (event) => {
         event.preventDefault();
         var distance = Number($(event.target).val().replace(/\D/g, '')) * 1000;
