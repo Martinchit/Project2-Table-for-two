@@ -21,14 +21,15 @@ function initMap() {
             socket.emit('geo', pos); 
             socket.on('marker', (data) => {
                 for(let i in data) {
+                        var detail = JSON.parse(data[i]);
                         var session = i;
                         var marker = new google.maps.Marker({
-                            position : data[i].geo,
+                            position : detail.geo,
                             map : map
                         });
                         // list[i] = marker;
                         var info = new google.maps.InfoWindow({
-                            content : "<div class='marker'><img src=" + data[i].user.photo + "><br><button class='key' value=" + data[i].user.email + ">Match</button></div><br><h3>" + data[i].user.name + "</h3>"
+                            content : "<div class='marker'><img src=" + detail.user.photo + "><br><button class='key' value=" + detail.user.email + ">Match</button></div><br><h3>" + detail.user.name + "</h3>"
                         });
                         marker.addListener('click', () => {
                             info.open(map, marker);
@@ -79,7 +80,7 @@ $(document).ready(() => {
                 $('#users').append("<div class='user'></div>");
                 $('.user').last().append("<img src=" + element.user.photo + ">");
                 $('.user').last().append("<p> Name : " + element.user.name + "</p>");
-                $('.user').last().append("<p> Horoscope : " + getZodiacSign(element.user.birthday.slice(0,2), element.user.birthday.slice(3,5)) + "</p>");
+                $('.user').last().append("<p> Horoscope : " + getZodiacSign(element.user.birthday.slice(3,5), element.user.birthday.slice(0,2)) + "</p>");
                 $('.user').last().append("<p>Distance : " + element.distance + "</p>");
             });
         });

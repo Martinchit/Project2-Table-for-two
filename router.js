@@ -68,12 +68,11 @@ module.exports = (express, app, io) => {
     router.get('/logout', (req,res) => {
         client.hgetall('onlineList', (err, list) => {
             var obj = list;
-            console.log(list)
             delete obj[req.user.email];
-            console.log(obj)
             if(Object.keys(obj).length === 0) {
                 client.del('onlineList');
             } else {
+                client.del('onlineList');
                 client.hmset('onlineList', obj);
             }
             req.logout();
@@ -153,6 +152,7 @@ module.exports = (express, app, io) => {
                 if(Object.keys(obj).length === 0) {
                     client.del('onlineList');
                 } else {
+                    client.del('onlineList');
                     client.hmset('onlineList', obj);
                 }
             });
