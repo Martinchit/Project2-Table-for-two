@@ -25,7 +25,7 @@ function initMap() {
                         var info = new google.maps.InfoWindow({
                             content : "<div class='marker'><img src=" + detail.user.photo + "><br><button class='key' value=" + detail.user.email + ">Match</button></div><br><h3>" + detail.user.name + "</h3>"
                         });
-                        marker.addListener('click', () => {
+                        name.addListener('click', () => {
                             info.open(map, name);
                         });
                     }  
