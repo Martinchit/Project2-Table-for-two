@@ -108,7 +108,7 @@ module.exports = (express, app, io) => {
             });
         });
         socket.on('geo', (geo) => {
-            client.hgetall('onlineList', (data) => {
+            client.hgetall('onlineList', (err, data) => {
                 if(data === null) {
                     var obj = {};
                     obj[socket.request.session.cookie] = socket.request.session.passport;
