@@ -52,7 +52,7 @@ module.exports = (express, app, io) => {
                     var distance = haversine(ownGeo, JSON.parse(data[i]).geo);
                     if(distance < req.body.perference) {
                         var obj = JSON.parse(data[i]);
-                        obj.distance = String(distance / 1000) + ' km';
+                        obj.distance = String((distance / 1000).toFixed(2)) + ' km';
                         ref.push(obj);
                     }
                 }
@@ -139,7 +139,7 @@ module.exports = (express, app, io) => {
         });
         socket.on('talk', (data) => {
             Model.user.findOne({where : {email : data.id}}).then((user)=> {
-                io.to(user.dataValues.socket_id).emit('talkAccepted', data.url);
+                io.to(user.dataValues.socket_id).emit('talkAccepted', data.link);
             });
         });
         socket.on('id', (id) => {

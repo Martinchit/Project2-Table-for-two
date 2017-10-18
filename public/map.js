@@ -106,7 +106,8 @@ $(document).ready(() => {
     $('body').on('click','#yes', (event) => {
         var url = $(event.target).closest('#yes').val();
         var email = $(event.target).closest('img').val();
-        var obj = {url : url, id : email};
+        var obj = {link : url, id : email};
+        console.log(obj);
         $(event.target).closest('.chatInvitation').remove();
         $('.newTag').replaceWith('<p>Matched</p>');
         socket.emit('talk', obj);
