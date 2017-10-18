@@ -27,9 +27,9 @@ function initMap() {
                             map : map
                         });
                         // list[i] = marker;
-                        // var info = new google.maps.InfoWindow({
-                        //     content : "<div class='marker'><img src=" + data[i].user.photo + "><br><button class='key' value=" + data[i].user.email + ">Match</button></div><br><h3>" + data[i].user.name + "</h3>"
-                        // });
+                        var info = new google.maps.InfoWindow({
+                            content : "<div class='marker'><img src=" + data[i].user.photo + "><br><button class='key' value=" + data[i].user.email + ">Match</button></div><br><h3>" + data[i].user.name + "</h3>"
+                        });
                         marker.addListener('click', () => {
                             info.open(map, marker);
                         });
