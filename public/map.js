@@ -2,6 +2,7 @@ var map, infoWindow, list = {};
 var socket = io();
 var pos;
 var user;
+var markerNum = 0;
 
 function initMap() {
     
@@ -16,8 +17,7 @@ function initMap() {
                 for(let i in data) {
                     if(list[i] === undefined) {
                         var detail = JSON.parse(data[i]);
-                        var name = detail.user.name;
-                        name = new google.maps.Marker({
+                        markerNum = new google.maps.Marker({
                             position : detail.geo,
                             map : map
                         });
@@ -25,9 +25,10 @@ function initMap() {
                         var info = new google.maps.InfoWindow({
                             content : "<div class='marker'><img src=" + detail.user.photo + "><br><button class='key' value=" + detail.user.email + ">Match</button></div><br><h3>" + detail.user.name + "</h3>"
                         });
-                        name.addListener('click', () => {
-                            info.open(map, name);
+                        markerNum.addListener('click', () => {
+                            info.open(map, markerNum);
                         });
+                        markerNum++;
                     }  
                 }  
             });
