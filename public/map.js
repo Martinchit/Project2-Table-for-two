@@ -15,7 +15,7 @@ function initMap() {
             socket.on('marker', (data) => {
                 for(let i in data) {
                     console.log(data[i]);
-                        var detail = data[i];
+                        var detail = JSON.parse(data[i]);
                         var session = i;
                         var marker = new google.maps.Marker({
                             position : detail.geo,
