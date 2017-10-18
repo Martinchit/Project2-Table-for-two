@@ -91,14 +91,14 @@ button {
     padding-top: 30px;
 }
 
-#choice {
+.choice {
     clear: both;
     display: flex;
     justify-content: space-around;
     align-content: baseline;
 }
 
-#choice button {
+.choice button {
     background-color: transparent;
     border: none;
 }
