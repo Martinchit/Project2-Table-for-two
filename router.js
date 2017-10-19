@@ -84,7 +84,13 @@ module.exports = (express, app, io) => {
     });
 
     router.get('/direction', (req,res) => {
-
+        var ref = req.query;
+        client.hgetall('onlineList', (err,data) => {
+            var info = JSON.parse(data[req.user.email]);
+            ref.ownLat = info.geo.lat;
+            ref.ownLng = info.geo.lng;
+        });
+        
     });
 
     router.get('/logout', (req,res) => {
