@@ -20,7 +20,7 @@ $(document).ready(() => {
     });
     $('#check').on('click', (event) => {
         console.log('hi')
-        var perference = $('#location').val();
+        var perference = $('#location').val().replace(/\s/g, "");
         console.log(perference);
         $('#location').val('');
         $.post('https://128.199.210.113.nip.io/search', {
