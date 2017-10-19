@@ -79,7 +79,6 @@ $(document).ready(() => {
         }).done((data) => {
             $('#users').children().remove();
             data.forEach(function(element) {
-                console.log(element);
                 $('#users').append("<div class='user'></div>");
                 $('.user').last().append("<img src=" + element.user.photo + ">");
                 $('.user').last().append("<p> Name : " + element.user.name + "</p>");

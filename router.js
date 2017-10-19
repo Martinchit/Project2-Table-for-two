@@ -131,6 +131,7 @@ module.exports = (express, app, io) => {
         });
         socket.on('geo', (geo) => {
             client.hgetall('onlineList', (err, data) => {
+                socket.request.session.passport.geo = geo;
                 if(data === null) {
                     var obj = {};
                     obj[socket.request.session.passport.user.email] = socket.request.session.passport;
@@ -172,7 +173,6 @@ module.exports = (express, app, io) => {
             });
         });
         socket.on('disconnect', () => {
-            
             client.hgetall('onlineList', (err, list) => {
                 var obj = list;
                 delete obj[socket.request.session.passport.user.email];
@@ -185,7 +185,14 @@ module.exports = (express, app, io) => {
             });
             io.emit('delMarker', socket.request.session.passport.user.email);
         });
-        
+        // socket.on('getSth', (data) => {
+        //     const uuid = require('uuid/v4');
+        //     var obj = {location : socket.request.session.passport.geo};
+        //     obj.uuid = uuid();
+        //     Model.user.findOne({where : {email : socket.request.session.passport.user.email}}).then((data) => {
+        //         io.to(data.socket_id).emit('getGeo', obj);
+        //     });
+        // });
     });
 
     return router;
