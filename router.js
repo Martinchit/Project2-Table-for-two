@@ -68,7 +68,7 @@ module.exports = (express, app, io) => {
     });
 
     router.post('/search', (req, res) => {
-        var perference = req.body.location;
+        var perference = req.body.location + ',hongkong';
         var clientId = process.env.yelp_clientId;
         var clientSecret = process.env.yelp_clientSecret;
         const searchRequest = {
