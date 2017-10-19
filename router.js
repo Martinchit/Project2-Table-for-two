@@ -193,6 +193,9 @@ module.exports = (express, app, io) => {
         //         io.to(data.socket_id).emit('getGeo', obj);
         //     });
         // });
+        socket.on('suggest', (data) => {
+            socket.on('back', data);
+        });
     });
 
     return router;

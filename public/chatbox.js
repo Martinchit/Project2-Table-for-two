@@ -47,9 +47,15 @@ $(document).ready(() => {
     $('body').on('click', '#go', (event) => {
         var obj = {
             sender : personalInfo.name,
-            shopLocation : $(event.target).val()
+            shopLocation : $(event.target).val(),
+            shopName :  $(event.target).closest('a').html()
         };
-        
+        socket.emit('suggest', obj);
     });
-    
+    socket.on('back', (data) => {
+        $('#messages').append('<div>');
+        $('#messages div').last().attr('class', 'suggestion');
+        $('#messages div').last().append($("<p>" + data.sender + "suggested to go </p>");
+        $('#messages div').last().append($('<a>')).attr({'href' : 'https://128.199.210.113.nip.io/' + data.shopLocation, "value" : data.shopLocation});
+    });
 });
