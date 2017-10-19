@@ -185,17 +185,16 @@ module.exports = (express, app, io) => {
             });
             io.emit('delMarker', socket.request.session.passport.user.email);
         });
-        // socket.on('getSth', (data) => {
-        //     const uuid = require('uuid/v4');
-        //     var obj = {location : socket.request.session.passport.geo};
-        //     obj.uuid = uuid();
-        //     Model.user.findOne({where : {email : socket.request.session.passport.user.email}}).then((data) => {
-        //         io.to(data.socket_id).emit('getGeo', obj);
-        //     });
-        // });
-        socket.on('suggest', (data) => {
-            io.emit('back', data);
+        socket.on('personal', (data)=> {
+            var obj = socket.request.session.passport.user;
+            socket.emit('personal', obj);
         });
+        socket.on('nextId', (data) => {
+            socket.on(data, (info) => {
+                io.emit(data+"1", info);
+            });
+        });
+        
     });
 
     return router;

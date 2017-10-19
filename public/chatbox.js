@@ -1,16 +1,20 @@
 var socket = io();
 var personalInfo;
+var uuid;
 $(document).ready(() => {
     var x = document.URL;
-    var uuid =  x.slice(27);
+    uuid =  x.slice(27);
     socket.emit('id', uuid);
+    socket.emit('personal', 'hi');
+    socket.on('personal', (data) => {
+        personalInfo = data;
+    });
     $('form').submit(() => {
         socket.emit(uuid, $('#m').val());
         $('#m').val('');
         return false;
     });
     socket.on(uuid, (obj) => {
-        personalInfo = obj;
         if(obj.msg !== "") {
             $('#messages').append('<div>');
             $('#messages div').last().attr('class', 'msg');
@@ -42,15 +46,17 @@ $(document).ready(() => {
             shopLocation : $(event.target).val(),
             shopName :  $(event.target).attr('id')
         };
-        socket.emit('suggest', obj);
+        socket.emit('nextId', uuid+"1");
+        socket.emit(uuid+"1", obj);
+        socket.on(uuid+"11", (data) => {
+            $('#messages').append('<div>');
+            $('#messages div').last().attr('class', 'suggestion');
+            $('#messages div').last().append('<img>');
+            $('#messages div img').last().attr('src', data.photo);
+            $('#messages div').last().append("<li><p> suggested to go " + "<a>" + data.shopName + "</a>" + "</p></li>");
+            $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/' + data.shopLocation);
+        });
         return false;
     });
-    socket.on('back', (data) => {
-        $('#messages').append('<div>');
-        $('#messages div').last().attr('class', 'suggestion');
-        $('#messages div').last().append('<img>');
-        $('#messages div img').last().attr('src', data.photo);
-        $('#messages div').last().append("<li><p> suggested to go " + "<a>" + data.shopName + "</a>" + "</p></li>");
-        $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/' + data.shopLocation);
-    });
+    
 });
