@@ -100,7 +100,7 @@ module.exports = (express, app, io) => {
 
     router.get('/logout', (req,res) => {
         client.hgetall('onlineList', (err, list) => {
-            if(list !== undefined && list[req.user.email] !== undefined) {
+            if(list !== null && list[req.user.email] !== undefined) {
                 var obj = list;
                 delete obj[req.user.email];
                 if(Object.keys(obj).length === 0) {
