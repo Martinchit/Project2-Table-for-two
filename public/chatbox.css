@@ -33,7 +33,7 @@ form button {
 }
 
 #chat {
-    background: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url('./chat.jpeg');
+    background: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url('./chat.jpeg') center no-repeat;
     background-size: 75% 100%;
     opacity: 0.5;
     height: 480px; 
