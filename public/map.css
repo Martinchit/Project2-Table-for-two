@@ -1,14 +1,16 @@
 #foot {
-    height : 20px;
-    position : fixed;
-    bottom : 0;
-    width : 100%;
-    text-align : center;
+    height: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
 }
 
 h1, h2 {
     margin-top : 30px;
     text-align : center;
+    font-family: 'chewy', cursive;
 }
 
 #map {
@@ -81,23 +83,22 @@ button {
     margin-bottom : 15px;
 }
 
-.chatInvitation {
-    background-color : crimson;
-    width : 320px;
-    height : 200px;
-    top : 30%;
-    left : 40%;
-    position : fixed;
+#map .chatInvitation {
+    background-color: crimson;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    position: absolute;
 }
 
-.chatInvitation img {
+#map .chatInvitation img {
     width: 100px;
     height : 100px;
     margin: 10px 5px; 
     float: left;
 }
 
-.chatInvitation p {
+#map .chatInvitation p {
     padding-right: 10px;
     padding-top: 30px;
 }

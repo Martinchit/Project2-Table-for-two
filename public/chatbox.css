@@ -87,3 +87,12 @@ form button {
 .itm {
     margin : 0px 20px 20px 20px;
 }
+
+#foot {
+    height: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+}
