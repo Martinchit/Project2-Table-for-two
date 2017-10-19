@@ -194,7 +194,7 @@ module.exports = (express, app, io) => {
         //     });
         // });
         socket.on('suggest', (data) => {
-            socket.on('back', data);
+            socket.emit('back', data);
         });
     });
 
