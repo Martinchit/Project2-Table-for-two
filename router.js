@@ -85,7 +85,7 @@ module.exports = (express, app, io) => {
 
     router.get('/direction', (req,res) => {
         var ref = req.query;
-        client.hgetall('user', (err,data) => {
+        client.hgetall('onlineList', (err,data) => {
             console.log(data);
             var info = JSON.parse(data[req.user.email]);
             console.log(info);
