@@ -44,7 +44,7 @@ $(document).ready(() => {
             
     //     });
     // });
-    $('body').on('click', '#go', (event) => {
+    $('body').on('click', '.go', (event) => {
         console.log($(event.target).attr('id'))
         var obj = {
             sender : personalInfo.photo,
