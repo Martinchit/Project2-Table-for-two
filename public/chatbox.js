@@ -20,8 +20,9 @@ $(document).ready(() => {
     });
     $('#check').on('click', (event) => {
         console.log('hi')
-        var perference = $('#id').val();
-        $('#id').empty();
+        var perference = $('#location').val();
+        console.log(perference);
+        $('#location').empty();
         $.post('https://128.199.210.113.nip.io/search', {
             location : perference
         }).done((data) => {
