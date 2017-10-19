@@ -186,7 +186,7 @@ module.exports = (express, app, io) => {
             io.emit('delMarker', socket.request.session.passport.user.email);
         });
         socket.on('personal', (data)=> {
-            var obj = socket.request.session.passport;
+            var obj = socket.request.session.passport.user;
             socket.emit('personal', obj);
         });
         socket.on('update', (data) => {
