@@ -21,9 +21,7 @@ $(document).ready(() => {
         }
     });
     $('#check').on('click', (event) => {
-        console.log('hi')
         var perference = $('#location').val().replace(/\s/g, "");
-        console.log(perference);
         $('#location').val('');
         $.post('https://128.199.210.113.nip.io/search', {
             location : perference
@@ -38,15 +36,7 @@ $(document).ready(() => {
             }
         });
     });
-    // socket.emit('getSth', 'hi');
-    // socket.on('getSth', (geo) => {
-    //     $('body').on('click', '#go', (event) => {
-            
-    //     });
-    // });
     $('body').on('click', '.go', (event) => {
-        console.log($(event.target).attr('id'));
-        console.log(personalInfo);
         var obj = {
             photo : personalInfo.photo,
             shopLocation : $(event.target).val(),
@@ -61,7 +51,6 @@ $(document).ready(() => {
         $('#messages div').last().append('<img>');
         $('#messages div img').last().attr('src', data.photo);
         $('#messages div').last().append("<li><p> suggested to go " + "<a>" + data.shopName + "</a>" + "</p></li>");
-        // $('#messages div').last().append("<a>" + data.shopName + "</a>");
         $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/' + data.shopLocation);
     });
 });
