@@ -27,7 +27,7 @@ $(document).ready(() => {
             location : perference
         }).done((data) => {
             for(let i = 0; i < data.length; i++) {
-                $('#restaurant').append('.itm');
+                $('#restaurant').append("<div class='itm'></div>");
                 $('.itm').last().append("<img src=" + data[i].image_url + ">");
                 $('.itm').last().append("<a target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
                 $('.itm').last().append("<button value=" + data[i].coordinates + ">Lets Go</button>");
