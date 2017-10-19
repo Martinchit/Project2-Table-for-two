@@ -8,6 +8,7 @@ $(document).ready(() => {
     socket.emit('personal', 'hi');
     socket.on('personal', (data) => {
         personalInfo = data;
+        console.log(personalInfo)
     });
     $('form').submit(() => {
         socket.emit(uuid, $('#m').val());
@@ -53,8 +54,8 @@ $(document).ready(() => {
     });
     socket.on(uuid+"1", (data) => {
         var ref = data.shopLocation.match(/\d+\.\d+/g);
-        var query = "lat=" + ref[0] + "&lng=" + ref[1];
-        $('#messages').append('<div>');
+        var query = "lat=" + ref[0] + "&lng=" + ref[1] + "&ownlat=" + personalInfo;
+        $('#messages').append('<div>'); 
         $('#messages div').last().attr('class', 'suggestion');
         $('#messages div').last().append('<img>');
         $('#messages div img').last().attr('src', data.photo);

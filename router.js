@@ -50,7 +50,6 @@ module.exports = (express, app, io) => {
         var ref = [];
         client.hgetall('onlineList', (err,data) => {
             for(var i in data) {
-                // if(JSON.parse(data[i]).geo.lat !== ownGeo.lat && JSON.parse(data[i]).geo.lng !== ownGeo.lng) {
                     var distance = haversine(ownGeo, JSON.parse(data[i]).geo);
                     if(distance < req.body.perference) {
                         var obj = JSON.parse(data[i]);
@@ -58,7 +57,6 @@ module.exports = (express, app, io) => {
                         ref.push(obj);
                     }
                 }
-            // }
             res.send(ref);
         });
     });
@@ -77,7 +75,6 @@ module.exports = (express, app, io) => {
         };
         yelp.accessToken(clientId, clientSecret).then(response => {
             const client = yelp.client(response.jsonBody.access_token);
-            console.log(client);
             client.search(searchRequest).then(response => {
                 res.send(response.jsonBody.businesses);
             });
@@ -85,6 +82,10 @@ module.exports = (express, app, io) => {
             console.log(err);
           });
         
+    });
+
+    router.get('/direction', (req,res) => {
+
     });
 
     router.get('/logout', (req,res) => {
