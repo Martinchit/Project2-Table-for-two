@@ -31,6 +31,7 @@ $(document).ready(() => {
         $.post('https://128.199.210.113.nip.io/search', {
             location : perference
         }).done((data) => {
+            $('#restaurant').children().remove();
             for(let i = 0; i < data.length; i++) {
                 $('#restaurant').append("<div class='col-lg-2 col-sm-3 col-xs-6 itm'></div>");
                 $('.itm').last().append("<img class='foto' src=" + data[i].image_url + ">");

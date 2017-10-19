@@ -72,7 +72,8 @@ module.exports = (express, app, io) => {
             var clientSecret = process.env.yelp_clientSecret;
             const searchRequest = {
                 location : perference,
-                limit : 15
+                limit : 15,
+                sortBy: reviewCount
             };
             yelp.accessToken(clientId, clientSecret).then(response => {
                 const client = yelp.client(response.jsonBody.access_token);

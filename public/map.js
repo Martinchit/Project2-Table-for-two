@@ -93,7 +93,6 @@ $(document).ready(() => {
         $(event.target).replaceWith("<p class='newTag'>Wait for reply</p>");
     });
     socket.on('talkInvitation', (data) => {
-        
         var url = 'https://128.199.210.113.nip.io/chat?' + data.uuid;
         $('#map').append("<div class='chatInvitation'></div>");
         $('.chatInvitation').append("<img class='photo' src=" + data.user.photo + ">");
