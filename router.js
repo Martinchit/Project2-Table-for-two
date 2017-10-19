@@ -189,10 +189,8 @@ module.exports = (express, app, io) => {
             var obj = socket.request.session.passport.user;
             socket.emit('personal', obj);
         });
-        socket.on('nextId', (data) => {
-            socket.on(data, (info) => {
-                io.emit(data+"1", info);
-            });
+        socket.on('update', (data) => {
+            io.emit(data.id, data);
         });
         
     });

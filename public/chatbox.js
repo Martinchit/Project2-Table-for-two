@@ -45,11 +45,11 @@ $(document).ready(() => {
         var obj = {
             photo : personalInfo.photo,
             shopLocation : $(event.target).val(),
-            shopName :  $(event.target).attr('id')
+            shopName :  $(event.target).attr('id'),
+            id : uuid+"1"
         };
-        socket.emit('nextId', uuid+"1");
-        socket.emit(uuid+"1", obj);
-        socket.on(uuid+"11", (data) => {
+        socket.emit('update', obj);
+        socket.on(uuid+"1", (data) => {
             $('#messages').append('<div>');
             $('#messages div').last().attr('class', 'suggestion');
             $('#messages div').last().append('<img>');
