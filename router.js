@@ -90,7 +90,7 @@ module.exports = (express, app, io) => {
             ref.ownLat = info.geo.lat;
             ref.ownLng = info.geo.lng;
         });
-        
+        res.redirect("https://www.google.com.hk/maps/dir/" + re.ownLat + "," + ref.ownLng + "/" + ref.lat + "," + ref.lng);
     });
 
     router.get('/logout', (req,res) => {

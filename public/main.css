@@ -28,10 +28,6 @@ h2 {
     flex-wrap: nowrap;
     flex-direction: column;
 }
-.col-xs-3 {
-    text-align: center;
-}
-
 
 .list {
     display: flex;
