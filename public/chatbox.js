@@ -1,6 +1,6 @@
 var socket = io();
+var personalInfo;
 $(document).ready(() => {
-    var personalInfo;
     var x = document.URL;
     var uuid =  x.slice(27);
     socket.emit('id', uuid);
