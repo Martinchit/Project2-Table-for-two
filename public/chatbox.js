@@ -26,7 +26,7 @@ $(document).ready(() => {
         $.post('https://128.199.210.113.nip.io/search', {
             location : perference
         }).done((data) => {
-            for(var i in data) {
+            for(let i = 0; i < data.length; i++) {
                 $('#restaurant').append('.itm');
                 $('.itm').last().append("<img src=" + data[i].image_url + ">");
                 $('.itm').last().append("<a target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");

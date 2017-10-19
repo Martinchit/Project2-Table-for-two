@@ -2,7 +2,7 @@ const passport = require('passport');
 const axios = require('axios');
 const Model = require('./models');
 const redis = require('redis');
-const yelp = require('./yelp');
+const yelp = require('yelp-fusion');
 var haversine = require('haversine-distance');
 
 var profile;
@@ -68,10 +68,20 @@ module.exports = (express, app, io) => {
 
     router.post('/search', (req, res) => {
         var perference = req.body.location;
-        console.log(perference);
-        var result = yelp(perference);
-        console.log(result);
-        res.send(result);
+        const searchRequest = {
+            location : perference,
+            limit : 15
+        };
+        yelp.accessToken(clientId, clientSecret).then(response => {
+            const client = yelp.client(response.jsonBody.access_token);
+            console.log(client);
+            client.search(searchRequest).then(response => {
+                res.send(result);
+            });
+          }).catch(err => {
+            console.log(err);
+          });
+        
     });
 
     router.get('/logout', (req,res) => {
