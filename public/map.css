@@ -1,12 +1,3 @@
-#foot {
-    height: 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 8px;
-}
-
 h1, h2 {
     margin-top : 30px;
     text-align : center;
@@ -113,4 +104,13 @@ button {
 .choice button {
     background-color: transparent;
     border: none;
+}
+
+#foot {
+    height: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
 }
