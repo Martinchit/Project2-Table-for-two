@@ -32,9 +32,9 @@ $(document).ready(() => {
                 $('#restaurant').append("<div class='col-lg-2 col-sm-3 col-xs-6 itm'></div>");
                 $('.itm').last().append("<img class='foto' src=" + data[i].image_url + ">");
                 $('.itm').last().append("<br>");
-                $('.itm').last().append("<a class='shop' id =" + data[i].name +  " target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
+                $('.itm').last().append("<a class='shop' target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
                 $('.itm').last().append("<br>");
-                $('.itm').last().append("<button id='go' value=" + JSON.stringify(data[i].coordinates) + ">Lets Go</button>");
+                $('.itm').last().append("<button class='go' id =" + data[i].name +  " value=" + JSON.stringify(data[i].coordinates) + ">Lets Go</button>");
             }
         });
     });
@@ -45,11 +45,11 @@ $(document).ready(() => {
     //     });
     // });
     $('body').on('click', '#go', (event) => {
-        console.log($(event.target).closest('.shop').attr('id'))
+        console.log($(event.target).attr('id'))
         var obj = {
             sender : personalInfo.photo,
             shopLocation : $(event.target).val(),
-            shopName :  $(event.target).closest('.shop').attr('id')
+            shopName :  $(event.target).attr('id')
         };
         socket.emit('suggest', obj);
         return false;
