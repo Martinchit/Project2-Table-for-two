@@ -61,7 +61,7 @@ input {
 
 .user {
     display : flex;
-    /* justify-content : space-around; */
+    justify-content : space-around;
     align-items : flex-end;
 }
 
