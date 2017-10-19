@@ -30,7 +30,6 @@ $(document).ready(() => {
                 $('.itm').last().append("<a target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
                 $('.itm').last().append("<button value=" + data[i].coordinates + ">Lets Go</button>");
             }
-            
         });
     });
 });
