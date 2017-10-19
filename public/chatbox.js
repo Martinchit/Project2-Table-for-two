@@ -19,6 +19,7 @@ $(document).ready(() => {
         }
     });
     $('#check').on('click', (event) => {
+        console.log('hi')
         var perference = $('#id').val();
         $('#id').empty();
         $.post('https://128.199.210.113.nip.io/search', {
