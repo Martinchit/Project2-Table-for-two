@@ -55,8 +55,10 @@ form button {
 #messages li:nth-child(odd) { background: #eee; }
 
 #restaurant {
+    width: 100%;
     display: flex;
     flex-wrap: nowrap;
+    overflow: scroll;
     justify-content: space-around;
     margin-top: 20px;
 }
