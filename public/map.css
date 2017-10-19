@@ -59,11 +59,11 @@ input {
     margin-bottom : 0px;
 }
 
-.user {
+/* .user {
     display : flex;
     justify-content : space-around;
     align-items : flex-end;
-}
+} */
 
 .col-xs-3 {
     text-align: center;
