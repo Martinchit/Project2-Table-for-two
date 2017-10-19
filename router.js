@@ -66,21 +66,24 @@ module.exports = (express, app, io) => {
     });
 
     router.post('/search', (req, res) => {
-        var perference = req.body.location + ',hongkong';
-        var clientId = process.env.yelp_clientId;
-        var clientSecret = process.env.yelp_clientSecret;
-        const searchRequest = {
-            location : perference,
-            limit : 15
-        };
-        yelp.accessToken(clientId, clientSecret).then(response => {
-            const client = yelp.client(response.jsonBody.access_token);
-            client.search(searchRequest).then(response => {
-                res.send(response.jsonBody.businesses);
+        if(req.body.location !== undefined) {
+            var perference = req.body.location + ',hongkong';
+            var clientId = process.env.yelp_clientId;
+            var clientSecret = process.env.yelp_clientSecret;
+            const searchRequest = {
+                location : perference,
+                limit : 15
+            };
+            yelp.accessToken(clientId, clientSecret).then(response => {
+                const client = yelp.client(response.jsonBody.access_token);
+                client.search(searchRequest).then(response => {
+                    res.send(response.jsonBody.businesses);
+                });
+            }).catch(err => {
+                console.log(err);
             });
-          }).catch(err => {
-            console.log(err);
-          });
+        }
+        
     });
 
     router.get('/direction', (req,res) => {
