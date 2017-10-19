@@ -73,7 +73,7 @@ module.exports = (express, app, io) => {
             const searchRequest = {
                 location : perference,
                 limit : 15,
-                sortBy: reviewCount
+                sort_by: review_count
             };
             yelp.accessToken(clientId, clientSecret).then(response => {
                 const client = yelp.client(response.jsonBody.access_token);
