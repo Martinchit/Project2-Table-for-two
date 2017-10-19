@@ -13,7 +13,9 @@ module.exports = (place) => {
     };
     yelp.accessToken(clientId, clientSecret).then(response => {
         const client = yelp.client(response.jsonBody.access_token);
+        console.log(client);
         client.search(searchRequest).then(response => {
+            console.log(response.jsonBody.businesses);
             return response.jsonBody.businesses;
         });
       }).catch(err => {
