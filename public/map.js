@@ -96,7 +96,7 @@ $(document).ready(() => {
     socket.on('talkInvitation', (data) => {
         
         var url = 'https://128.199.210.113.nip.io/chat?' + data.uuid;
-        $('#map').append("<div class='chatInvitation'></div>");
+        $('body').append("<div class='chatInvitation'></div>");
         $('.chatInvitation').append("<img class='photo' src=" + data.user.photo + ">");
         $('.chatInvitation').append("<p>" + data.user.firstName + " : <br>Do you wanna have dinner together tonight?</p>");
         $('.chatInvitation').append("<div class='choice' id=" + data.user.email + ">");
