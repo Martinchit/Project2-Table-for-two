@@ -59,7 +59,7 @@ $(document).ready(() => {
         $('#messages div').last().attr('class', 'suggestion');
         $('#messages div').last().append('<img>');
         $('#messages div img').last().attr('src', data.photo);
-        $('#messages div').last().append("<li><p> suggested to go " + "<a>" + data.shopName + "</a>" + "</p></li>");
+        $('#messages div').last().append("<li><p> Lets go " + "<a>" + data.shopName + "</a>" + "</p></li>");
         $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/direction?' + query);
         $('#messages div a').last().attr('target','_blank');
         var height = $('#messages').height();
