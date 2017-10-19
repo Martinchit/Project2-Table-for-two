@@ -32,7 +32,7 @@ $(document).ready(() => {
                 $('#restaurant').append("<div class='col-lg-2 col-sm-3 col-xs-6 itm'></div>");
                 $('.itm').last().append("<img class='foto' src=" + data[i].image_url + ">");
                 $('.itm').last().append("<br>");
-                $('.itm').last().append("<a class='shop' target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
+                $('.itm').last().append("<a class='shop' id =" + data[i].name +  " target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
                 $('.itm').last().append("<br>");
                 $('.itm').last().append("<button id='go' value=" + JSON.stringify(data[i].coordinates) + ">Lets Go</button>");
             }
@@ -48,7 +48,7 @@ $(document).ready(() => {
         var obj = {
             sender : personalInfo.photo,
             shopLocation : $(event.target).val(),
-            shopName :  $(event.target).closest('.shop').text()
+            shopName :  $(event.target).closest('.shop').attr('id')
         };
         socket.emit('suggest', obj);
         return false;
@@ -57,8 +57,8 @@ $(document).ready(() => {
         $('#messages').append('<div>');
         $('#messages div').last().attr('class', 'suggestion');
         $('#messages div').last().append('<img>').attr('src', data.sender);
-        $('#messages div').last().append("<p> suggested to go </p>");
-        $('#messages div').last().append("<a>" + data.shopName + "</a>");
+        $('#messages div').last().append("<li><p> suggested to go " + "<a>" + data.shopName + "</a>" + "</p></li>");
+        // $('#messages div').last().append("<a>" + data.shopName + "</a>");
         $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/' + data.shopLocation);
     });
 });
