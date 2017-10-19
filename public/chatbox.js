@@ -22,7 +22,7 @@ $(document).ready(() => {
         console.log('hi')
         var perference = $('#location').val();
         console.log(perference);
-        $('#location').empty();
+        $('#location').val('');
         $.post('https://128.199.210.113.nip.io/search', {
             location : perference
         }).done((data) => {
