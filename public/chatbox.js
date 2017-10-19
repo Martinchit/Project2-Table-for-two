@@ -48,7 +48,7 @@ $(document).ready(() => {
         console.log($(event.target).attr('id'));
         console.log(personalInfo);
         var obj = {
-            sender : personalInfo.photo,
+            photo : personalInfo.photo,
             shopLocation : $(event.target).val(),
             shopName :  $(event.target).attr('id')
         };
@@ -58,7 +58,8 @@ $(document).ready(() => {
     socket.on('back', (data) => {
         $('#messages').append('<div>');
         $('#messages div').last().attr('class', 'suggestion');
-        $('#messages div').last().append('<img>').attr('src', data.sender);
+        $('#messages div').last().append('<img>');
+        $('#messages div img').last().attr('src', data.photo);
         $('#messages div').last().append("<li><p> suggested to go " + "<a>" + data.shopName + "</a>" + "</p></li>");
         // $('#messages div').last().append("<a>" + data.shopName + "</a>");
         $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/' + data.shopLocation);
