@@ -68,6 +68,7 @@ module.exports = (express, app, io) => {
 
     router.post('/search', (req, res) => {
         var perference = req.body.location;
+        console.log(perference);
         var result = yelp(perference);
         console.log(result);
         res.send(result);
