@@ -75,9 +75,9 @@ button {
     background-color : crimson;
     width : 320px;
     height : 200px;
-    top : 50%;
-    left : 50%;
-    z-index: 2;
+    top : 30%;
+    left : 40%;
+    position : absolute;
 }
 
 #map .chatInvitation img {
