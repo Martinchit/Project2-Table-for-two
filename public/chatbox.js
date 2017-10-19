@@ -10,8 +10,8 @@ $(document).ready(() => {
         return false;
     });
     socket.on(uuid, (obj) => {
+        personalInfo = obj;
         if(obj.msg !== "") {
-            personalInfo = obj;
             $('#messages').append('<div>');
             $('#messages div').last().attr('class', 'msg');
             $('#messages div').last().append($('<img>').attr('src', obj.photo));
@@ -58,6 +58,7 @@ $(document).ready(() => {
         $('#messages div').last().attr('class', 'suggestion');
         $('#messages div').last().append('<img>').attr('src', data.sender);
         $('#messages div').last().append("<p> suggested to go </p>");
-        $('#messages div').last().append($('<a>')).attr({'href' : 'https://128.199.210.113.nip.io/' + data.shopLocation, "value" : data.shopLocation});
+        $('#messages div').last().append("<a>" + data.shopName + "</a>");
+        $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/' + data.shopLocation);
     });
 });
