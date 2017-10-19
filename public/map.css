@@ -71,23 +71,23 @@ button {
     margin-bottom : 15px;
 }
 
-.chatInvitation {
+#map .chatInvitation {
     background-color : crimson;
     width : 320px;
     height : 200px;
     top : 50%;
     left : 50%;
-    position : fixed;
+    position : absolute;
 }
 
-.chatInvitation img {
+#map .chatInvitation img {
     width: 100px;
     height : 100px;
     margin: 10px 5px; 
     float: left;
 }
 
-.chatInvitation p {
+#map .chatInvitation p {
     padding-right: 10px;
     padding-top: 30px;
 }
