@@ -61,16 +61,23 @@ input {
 
 .user {
     display : flex;
-    justify-content : space-around;
+    justify-content : space-between;
     align-items : flex-end;
 }
 
-.col-xs-3 {
-    text-align: center;
+.user img {
+    margin-left : 20px;
+    vertical-align: middle;
+    border-style: none;
+}
+
+.user p {
+    margin: 0px 10px 1rem 10px;
 }
 
 button {
     cursor : pointer;
+    margin-top : 10px;
     margin-bottom : 15px;
 }
 
