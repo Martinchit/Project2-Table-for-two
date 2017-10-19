@@ -79,7 +79,7 @@ $(document).ready(() => {
         }).done((data) => {
             $('#users').children().remove();
             data.forEach(function(element) {
-                $('#users').append("<div class='user'></div>");
+                $('#users').append("<div class='col-xs-3 user'></div>");
                 $('.user').last().append("<img src=" + element.user.photo + ">");
                 $('.user').last().append("<p> Name : " + element.user.name + "</p>");
                 $('.user').last().append("<p> Horoscope : " + getZodiacSign(element.user.birthday.slice(3,5), element.user.birthday.slice(0,2)) + "</p>");
