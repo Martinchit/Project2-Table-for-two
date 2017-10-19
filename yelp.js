@@ -5,8 +5,10 @@ var clientId = process.env.yelp_clientId;
 var clientSecret = process.env.yelp_clientSecret;
 
 module.exports = (place) => {
+    var perference = place + ',hongkong';
+    console.log(perference);
     const searchRequest = {
-        location : place + ',hongkong',
+        location : perference,
         limit : 15
     };
     yelp.accessToken(clientId, clientSecret).then(response => {
