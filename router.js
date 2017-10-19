@@ -81,7 +81,6 @@ module.exports = (express, app, io) => {
           }).catch(err => {
             console.log(err);
           });
-        
     });
 
     router.get('/direction', (req,res) => {
@@ -187,7 +186,7 @@ module.exports = (express, app, io) => {
             io.emit('delMarker', socket.request.session.passport.user.email);
         });
         socket.on('personal', (data)=> {
-            var obj = socket.request.session.passport.user;
+            var obj = socket.request.session.passport;
             socket.emit('personal', obj);
         });
         socket.on('update', (data) => {

@@ -54,7 +54,7 @@ $(document).ready(() => {
     });
     socket.on(uuid+"1", (data) => {
         var ref = data.shopLocation.match(/\d+\.\d+/g);
-        var query = "lat=" + ref[0] + "&lng=" + ref[1] + "&ownlat=" + personalInfo;
+        var query = "lat=" + ref[0] + "&lng=" + ref[1];
         $('#messages').append('<div>'); 
         $('#messages div').last().attr('class', 'suggestion');
         $('#messages div').last().append('<img>');
