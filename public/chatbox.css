@@ -33,9 +33,6 @@ form button {
 }
 
 #chat {
-    background: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url('./chat.jpeg') center no-repeat;
-    background-size: 75% 100%;
-    opacity: 0.5;
     height: 480px; 
     width: 100%;
     overflow: scroll; 
@@ -63,14 +60,21 @@ form button {
 .suggestion li {
     font-size: 3vw;
     margin-left: 10px;
+    font-family: 'chewy', cursive;
 }
 
 .suggestion li p {
     margin-bottom : 0px;
+    font-family: 'chewy', cursive;
 }
 
+.suggestion a {
+    font-family: 'chewy', cursive;
+}
+
+
 #messages { list-style-type: none; margin: 0; padding: 0; }
-#messages li { padding: 5px 10px; }
+#messages li { padding: 5px 10px; font-family: 'chewy', cursive; }
 #messages li:nth-child(odd) { background: #eee; }
 
 #restaurant {
