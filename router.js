@@ -2,6 +2,7 @@ const passport = require('passport');
 const axios = require('axios');
 const Model = require('./models');
 const redis = require('redis');
+const yelp = require('./yelp');
 var haversine = require('haversine-distance');
 
 var profile;
@@ -63,6 +64,12 @@ module.exports = (express, app, io) => {
 
     router.get('/chat', (req,res) => {
         res.render('chat', {layout : 'chatbox'});
+    });
+
+    router.post('/search', (req, res) => {
+        var perference = req.body.location;
+        var result = yelp(perference);
+        res.send(result);
     });
 
     router.get('/logout', (req,res) => {

@@ -18,4 +18,19 @@ $(document).ready(() => {
             $('#chat').scrollTop(height);
         }
     });
+    $('#check').on('click', (event) => {
+        var perference = $('#id').val();
+        $('#id').empty();
+        $.post('https://128.199.210.113.nip.io/search', {
+            location : perference
+        }).done((data) => {
+            for(var i in data) {
+                $('#restaurant').append('.itm');
+                $('.itm').last().append("<img src=" + data[i].image_url + ">");
+                $('.itm').last().append("<a target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
+                $('.itm').last().append("<button value=" + data[i].coordinates + ">Lets Go</button>");
+            }
+            
+        });
+    });
 });
