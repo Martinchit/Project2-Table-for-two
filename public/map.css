@@ -65,6 +65,10 @@ input {
     align-items : flex-end;
 }
 
+.col-xs-3 {
+    text-align: center;
+}
+
 button {
     cursor : pointer;
     margin-bottom : 15px;
