@@ -79,7 +79,7 @@ module.exports = (express, app, io) => {
             const client = yelp.client(response.jsonBody.access_token);
             console.log(client);
             client.search(searchRequest).then(response => {
-                res.send(result);
+                res.send(response.jsonBody.businesses);
             });
           }).catch(err => {
             console.log(err);
