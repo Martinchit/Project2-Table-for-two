@@ -49,17 +49,16 @@ $(document).ready(() => {
             id : uuid+"1"
         };
         socket.emit('update', obj);
-        socket.on(uuid+"1", (data) => {
-            $('#messages').append('<div>');
-            $('#messages div').last().attr('class', 'suggestion');
-            $('#messages div').last().append('<img>');
-            $('#messages div img').last().attr('src', data.photo);
-            $('#messages div').last().append("<li><p> suggested to go " + "<a>" + data.shopName + "</a>" + "</p></li>");
-            $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/' + data.shopLocation);
-            var height = $('#messages').height();
-            $('#chat').scrollTop(height);
-        });
         return false;
     });
-    
+    socket.on(uuid+"1", (data) => {
+        $('#messages').append('<div>');
+        $('#messages div').last().attr('class', 'suggestion');
+        $('#messages div').last().append('<img>');
+        $('#messages div img').last().attr('src', data.photo);
+        $('#messages div').last().append("<li><p> suggested to go " + "<a>" + data.shopName + "</a>" + "</p></li>");
+        $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/' + data.shopLocation);
+        var height = $('#messages').height();
+        $('#chat').scrollTop(height);
+    });
 });
