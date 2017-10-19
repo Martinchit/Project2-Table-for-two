@@ -30,6 +30,7 @@ $(document).ready(() => {
                 $('#restaurant').append("<div class='itm'></div>");
                 $('.itm').last().append("<img class='foto' src=" + data[i].image_url + ">");
                 $('.itm').last().append("<a target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
+                $('.itm').last().append("<br>");
                 $('.itm').last().append("<button value=" + data[i].coordinates + ">Lets Go</button>");
             }
         });
