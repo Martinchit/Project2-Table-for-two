@@ -55,6 +55,8 @@ $(document).ready(() => {
             $('#messages div img').last().attr('src', data.photo);
             $('#messages div').last().append("<li><p> suggested to go " + "<a>" + data.shopName + "</a>" + "</p></li>");
             $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/' + data.shopLocation);
+            var height = $('#messages').height();
+            $('#chat').scrollTop(height);
         });
         return false;
     });
