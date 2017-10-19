@@ -29,7 +29,7 @@ $(document).ready(() => {
             location : perference
         }).done((data) => {
             for(let i = 0; i < data.length; i++) {
-                $('#restaurant').append("<div class='col-lg-6 col-sm-3 col-xs-6 itm'></div>");
+                $('#restaurant').append("<div class='col-lg-2 col-sm-3 col-xs-6 itm'></div>");
                 $('.itm').last().append("<img class='foto' src=" + data[i].image_url + ">");
                 $('.itm').last().append("<br>");
                 $('.itm').last().append("<a class='shop' target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
