@@ -38,7 +38,8 @@ $(document).ready(() => {
                 $('.itm').last().append("<br>");
                 $('.itm').last().append("<a class='shop' target='_blank' href=" + data[i].url + ">" + data[i].name + "</a>");
                 $('.itm').last().append("<br>");
-                $('.itm').last().append("<button class='go' id =" + data[i].name +  " value=" + JSON.stringify(data[i].coordinates) + ">Lets Go</button>");
+                $('.itm').last().append("<button class='go' value=" + JSON.stringify(data[i].coordinates) + ">Lets Go</button>");
+                $('.itm button').last().attr('id', data[i].name);
             }
         });
     });
