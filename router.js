@@ -4,6 +4,7 @@ const Model = require('./models');
 const redis = require('redis');
 const yelp = require('yelp-fusion');
 var haversine = require('haversine-distance');
+require('dotenv').config();
 
 var profile;
 
@@ -68,6 +69,8 @@ module.exports = (express, app, io) => {
 
     router.post('/search', (req, res) => {
         var perference = req.body.location;
+        var clientId = process.env.yelp_clientId;
+        var clientSecret = process.env.yelp_clientSecret;
         const searchRequest = {
             location : perference,
             limit : 15
