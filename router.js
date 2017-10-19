@@ -88,6 +88,7 @@ module.exports = (express, app, io) => {
         client.hgetall('onlineList', (err,data) => {
             console.log(data);
             var info = JSON.parse(data[req.user.email]);
+            console.log(info);
             ref.ownLat = info.geo.lat;
             ref.ownLng = info.geo.lng;
         });
