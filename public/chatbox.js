@@ -51,6 +51,7 @@ $(document).ready(() => {
             shopName :  $(event.target).closest('a').html()
         };
         socket.emit('suggest', obj);
+        return false;
     });
     socket.on('back', (data) => {
         $('#messages').append('<div>');
