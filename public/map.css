@@ -123,9 +123,14 @@ button {
         text-align: center;
         margin-left: 10px;
         margin-right: 10px;
+        margin-bottom : 15px;
     }
     .user img {
         width: 100px;
         height: 100px;
+        padding: 0px;
+    }
+    .user p {
+        margin: 0px 0px 0px 10px;
     }
 }
