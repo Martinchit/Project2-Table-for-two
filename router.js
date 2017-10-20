@@ -111,7 +111,7 @@ module.exports = (express, app, io) => {
                     client.hmset('onlineList', obj);
                 }
                 req.logout();
-                io.emit('marker', req.user.email);
+                io.emit('delMarker', req.user.email);
             }
         });
         res.render('logout', {layout : 'logoutPage'});
