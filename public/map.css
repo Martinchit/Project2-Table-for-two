@@ -56,12 +56,11 @@ input {
     display : flex;
     justify-content : space-between;
     align-items : flex-end;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 80px;
+    margin-right: 80px;
 }
 
 .user img {
-    margin-left : 20px;
     vertical-align: middle;
     border-style: none;
 }
@@ -119,7 +118,8 @@ button {
 
 @media screen and (max-width: 480px) {
     .user {
-        display: block;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
         margin-left: 10px;
         margin-right: 10px;
