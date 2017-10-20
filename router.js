@@ -186,19 +186,19 @@ module.exports = (express, app, io) => {
                 io.emit(id, obj);
             });
         });
-        socket.on('disconnect', () => {
-            client.hgetall('onlineList', (err, list) => {
-                var obj = list;
-                delete obj[socket.request.session.passport.user.email];
-                if(Object.keys(obj).length === 0) {
-                    client.del('onlineList');
-                } else {
-                    client.del('onlineList');
-                    client.hmset('onlineList', obj);
-                }
-            });
-            io.emit('delMarker', socket.request.session.passport.user.email);
-        });
+        // socket.on('disconnect', () => {
+        //     client.hgetall('onlineList', (err, list) => {
+        //         var obj = list;
+        //         delete obj[socket.request.session.passport.user.email];
+        //         if(Object.keys(obj).length === 0) {
+        //             client.del('onlineList');
+        //         } else {
+        //             client.del('onlineList');
+        //             client.hmset('onlineList', obj);
+        //         }
+        //     });
+        //     io.emit('delMarker', socket.request.session.passport.user.email);
+        // });
         socket.on('personal', (data)=> {
             var obj = socket.request.session.passport.user;
             socket.emit('personal', obj);
