@@ -56,6 +56,8 @@ input {
     display : flex;
     justify-content : space-between;
     align-items : flex-end;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .user img {
