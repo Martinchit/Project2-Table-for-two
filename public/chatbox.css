@@ -4,6 +4,10 @@
     box-sizing: border-box; 
 }
 
+a {
+    cursor: pointer;
+}
+
 body { 
     font: 13px Helvetica, Arial; 
 }
@@ -50,10 +54,6 @@ form button {
     margin-left: 10px;
 }
 
-.msg a {
-    cursor: pointer;
-}
-
 .suggestion {
     display: flex;
     justify-content: flex-start;
@@ -76,7 +76,6 @@ form button {
     font-family: 'chewy', cursive;
 }
 
-
 #messages { list-style-type: none; margin: 0; padding: 0; }
 #messages li { padding: 5px 10px; font-family: 'chewy', cursive; }
 #messages li:nth-child(odd) { background: #eee; }
@@ -98,6 +97,21 @@ form button {
 .itm {
     text-align: center;
     margin : 0px 20px 20px 20px;
+}
+
+.itm shop {
+    color: rgb(17, 14, 14);
+}
+
+.itm shop:hover {
+    color: rgb(17, 14, 14);
+    text-decoration: none;
+}
+
+#logout {
+    position: fixed;
+    bottom: 5px;
+    z-index: 2;
 }
 
 #foot {
