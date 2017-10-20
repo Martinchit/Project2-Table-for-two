@@ -136,7 +136,7 @@ button {
     #list .button {
         font-size: 3vw;
     }
-    #map .marker h3 {
+    h3 {
         font-size: 6vw;
     }
     #map .chatInvitation p {
