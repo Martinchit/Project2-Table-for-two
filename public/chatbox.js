@@ -8,7 +8,6 @@ $(document).ready(() => {
     socket.emit('personal', 'hi');
     socket.on('personal', (data) => {
         personalInfo = data;
-        console.log(personalInfo)
     });
     $('form').submit(() => {
         socket.emit(uuid, $('#m').val());
@@ -19,7 +18,9 @@ $(document).ready(() => {
         if(obj.msg !== "") {
             $('#messages').append('<div>');
             $('#messages div').last().attr('class', 'msg');
-            $('#messages div').last().append($('<img>').attr('src', obj.photo));
+            $('#messages div').last().append("<a><img></a>");
+            $('#messages div a').last().attr('href', obj.profileURL);
+            $('#messages div img').last().attr('src', obj.photo);
             $('#messages div').last().append($('<li>').text(obj.msg));
             var height = $('#messages').height();
             $('#chat').scrollTop(height);
