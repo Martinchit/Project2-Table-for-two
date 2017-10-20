@@ -20,6 +20,7 @@ $(document).ready(() => {
             $('#messages div').last().attr('class', 'msg');
             $('#messages div').last().append("<a><img></a>");
             $('#messages div a').last().attr('href', obj.profileURL);
+            $('#messages div a').last().attr('target', '_blank');
             $('#messages div img').last().attr('src', obj.photo);
             $('#messages div').last().append($('<li>').text(obj.msg));
             var height = $('#messages').height();
