@@ -80,10 +80,10 @@ $(document).ready(() => {
             $('#users').children().remove();
             data.forEach(function(element) {
                 $('#users').append("<div class='user'></div>");
-                $('.user').last().append("<img class='col-xs-3' src=" + element.user.photo + ">");
-                $('.user').last().append("<p class='col-xs-3'> Name : " + element.user.name + "</p>");
-                $('.user').last().append("<p class='col-xs-3'> Horoscope : " + getZodiacSign(element.user.birthday.slice(3,5), element.user.birthday.slice(0,2)) + "</p>");
-                $('.user').last().append("<p class='col-xs-3'>Distance : " + element.distance + "</p>");
+                $('.user').last().append("<img class='col-sm-3' src=" + element.user.photo + ">");
+                $('.user').last().append("<p class='col-sm-3'> Name : " + element.user.name + "</p>");
+                $('.user').last().append("<p class='col-sm-3'> Horoscope : " + getZodiacSign(element.user.birthday.slice(3,5), element.user.birthday.slice(0,2)) + "</p>");
+                $('.user').last().append("<p class='col-sm-3'>Distance : " + element.distance + "</p>");
             });
         });
     });
@@ -128,18 +128,18 @@ socket.on('talkAccepted', (data) => {
 function getZodiacSign(day, month) {
     
     var zodiacSigns = [
-        'capricorn',
-        'aquarius',
-        'pisces',
-        'aries',
-        'taurus',
-        'gemini',
-        'cancer',
-        'leo',
-        'virgo',
-        'libra',
-        'scorpio',
-        'sagittarius'
+        'Capricorn',
+        'Aquarius',
+        'Pisces',
+        'Aries',
+        'Taurus',
+        'Gemini',
+        'Cancer',
+        'Leo',
+        'Virgo',
+        'Libra',
+        'Scorpio',
+        'Sagittarius'
     ];
         
  

@@ -118,10 +118,14 @@ button {
 }
 
 @media screen and (max-width: 480px) {
-    user {
+    .user {
         display: block;
         text-align: center;
         margin-left: 10px;
         margin-right: 10px;
+    }
+    .user img {
+        width: 100px;
+        height: 100px;
     }
 }
