@@ -167,7 +167,7 @@ module.exports = (express, app, io) => {
             });
         });
         socket.on('matchClicked', (data) => {
-            Model.user.findOne({where : {email : data}}).then((info) => {
+            Model.user.findOne({where : {fbid : data}}).then((info) => {
                 const uuid = require('uuid/v4');
                 var obj = socket.request.session.passport;
                 obj.uuid = uuid();
