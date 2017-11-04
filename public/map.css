@@ -143,5 +143,6 @@ button {
         margin-left: 10px;
         margin-top: 0;
         margin-bottom: 1rem;
+        z-index: 1;
     }
 }
