@@ -38,6 +38,7 @@ module.exports = (express, app, io) => {
     router.get('/profile', isLoggedIn, (req,res) => {
         profile = req.user;
         req.user.layout = 'profile';
+        console.log(req.user);
         res.render('userProfile', req.user);
     });
 
@@ -117,7 +118,7 @@ module.exports = (express, app, io) => {
         res.render('logout', {layout : 'logoutPage'});
     });
 
-    router.get('/auth/facebook', passport.authenticate('facebook', {scope : ['user_photos', 'user_friends', 'user_birthday', 'user_hometown', 'email']}));
+    router.get('/auth/facebook', passport.authenticate('facebook', {scope : ['user_photos', 'user_birthday', 'email']}));
 
     router.get('/auth/facebook/callback', passport.authenticate('facebook', {
         successRedirect : '/profile',
@@ -176,7 +177,7 @@ module.exports = (express, app, io) => {
         });
         socket.on('talk', (data) => {
             Model.user.findOne({where : {email : data.id}}).then((user)=> {
-                
+
                 io.to(user.dataValues.socket_id).emit('talkAccepted', data.link);
             });
         });
