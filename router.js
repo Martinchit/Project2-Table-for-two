@@ -38,7 +38,6 @@ module.exports = (express, app, io) => {
     router.get('/profile', isLoggedIn, (req,res) => {
         profile = req.user;
         req.user.layout = 'profile';
-        console.log(req.user);
         res.render('userProfile', req.user);
     });
 
@@ -133,13 +132,13 @@ module.exports = (express, app, io) => {
             client.hgetall('user', (err,data) => {
                 if(data === null) {
                     var obj = {};
-                    obj[socket.request.session.passport.user.email] = JSON.stringify(socket.request.session.passport);
+                    obj[socket.request.session.passport.user.fbid] = JSON.stringify(socket.request.session.passport);
                     client.hmset('user', obj);
                 } else {
                     var obj = {};
                     obj[socket.request.session.cookie] = socket.request.session.passport;
                     var newObj = data;
-                    newObj[socket.request.session.passport.user.email] = JSON.stringify(obj[socket.request.session.cookie]);
+                    newObj[socket.request.session.passport.user.fbid] = JSON.stringify(obj[socket.request.session.cookie]);
                     client.hmset('user', newObj);
                 }
             });
@@ -149,9 +148,9 @@ module.exports = (express, app, io) => {
                 socket.request.session.passport.geo = geo;
                 if(data === null) {
                     var obj = {};
-                    obj[socket.request.session.passport.user.email] = socket.request.session.passport;
-                    obj[socket.request.session.passport.user.email].geo = geo;
-                    obj[socket.request.session.passport.user.email] = JSON.stringify(obj[socket.request.session.passport.user.email]);
+                    obj[socket.request.session.passport.user.fbid] = socket.request.session.passport;
+                    obj[socket.request.session.passport.user.fbid].geo = geo;
+                    obj[socket.request.session.passport.user.fbid] = JSON.stringify(obj[socket.request.session.passport.user.email]);
                     client.hmset('onlineList', obj);
                     io.emit('marker', obj);
                 } else {
@@ -160,7 +159,7 @@ module.exports = (express, app, io) => {
                     obj[socket.request.session.cookie].geo = geo;
                     var newObj = data;
                     console.log(newObj);
-                    newObj[socket.request.session.passport.user.email] = JSON.stringify(obj[socket.request.session.cookie]);
+                    newObj[socket.request.session.passport.user.fbid] = JSON.stringify(obj[socket.request.session.cookie]);
                     client.del('onlineList');
                     client.hmset('onlineList', newObj);
                     io.emit('marker', newObj);
@@ -176,8 +175,7 @@ module.exports = (express, app, io) => {
             });
         });
         socket.on('talk', (data) => {
-            Model.user.findOne({where : {email : data.id}}).then((user)=> {
-
+            Model.user.findOne({where : {fbid : data.id}}).then((user)=> {
                 io.to(user.dataValues.socket_id).emit('talkAccepted', data.link);
             });
         });
