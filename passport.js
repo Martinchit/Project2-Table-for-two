@@ -13,7 +13,7 @@ module.exports = (app) => {
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "https://128.199.210.113.nip.io/auth/facebook/callback",
-        profileFields: ['id', 'displayName', 'name', 'gender', 'photos', 'email', 'friends', 'birthday','profileUrl','hometown']
+        profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'friends', 'birthday','profileUrl']
       },
       function(accessToken, refreshToken, profile, cb) {
           bcrypt.hashPassword(profile.id).then((id) => {
@@ -27,7 +27,7 @@ module.exports = (app) => {
                     photo : profile._json.picture.data.url,
                     fbid : id,
                     birthday : profile._json.birthday,
-                    hometown : profile._json.hometown.name,
+                    // hometown : profile._json.hometown.name,
                     email : profile._json.email
                 }}).spread((user, created) => {
                     return cb(null, user);
