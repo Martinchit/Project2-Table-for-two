@@ -43,7 +43,7 @@ input {
 }
 
 .btn {
-    display: inline-block;
+    /* display: inline-block;
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
@@ -58,7 +58,9 @@ input {
     line-height: 1.25;
     border-radius: .25rem;
     transition: all .15s ease-in-out;
-    width: 100%;
+    width: 100%; */
+    text-align: center;
+    margin: 10px auto;
 }
 
 #foot {
