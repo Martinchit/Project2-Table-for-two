@@ -103,7 +103,7 @@ module.exports = (express, app, io) => {
         client.hgetall('onlineList', (err, list) => {
             if(list !== null && list[req.user.email] !== undefined) {
                 var obj = list;
-                delete obj[req.user.email];
+                delete obj[req.user.fbid];
                 if(Object.keys(obj).length === 0) {
                     client.del('onlineList');
                 } else {
