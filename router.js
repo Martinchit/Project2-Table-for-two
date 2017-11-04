@@ -145,14 +145,14 @@ module.exports = (express, app, io) => {
             client.hgetall('onlineList', (err, data) => {
                 socket.request.session.passport.geo = geo;
                 if(data === null) {
-                    let obj = {};
+                    var obj = {};
                     obj[socket.request.session.passport.user.fbid] = socket.request.session.passport;
                     obj[socket.request.session.passport.user.fbid].geo = geo;
                     obj[socket.request.session.passport.user.fbid] = JSON.stringify(obj[socket.request.session.passport.user.email]);
                     client.hmset('onlineList', obj);
                     io.emit('marker', obj);
                 } else {
-                    let obj = {};
+                    var obj = {};
                     obj[socket.request.session.cookie] = socket.request.session.passport;
                     obj[socket.request.session.cookie].geo = geo;
                     var newObj = data;
