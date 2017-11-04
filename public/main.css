@@ -55,6 +55,7 @@ input {
     width: 100%; */
     text-align: center;
     margin: 10px auto;
+    width: 200px;
 }
 
 #foot {
@@ -64,11 +65,4 @@ input {
     width: 100%;
     text-align: center;
     margin-bottom: 5px;
-}
-
-@media screen and (max-width: 480px) {
-    .btn {
-        text-align: center;
-        margin: 20px auto;
-    }
 }
