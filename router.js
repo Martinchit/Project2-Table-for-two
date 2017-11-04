@@ -150,6 +150,7 @@ module.exports = (express, app, io) => {
                     obj[socket.request.session.passport.user.fbid] = socket.request.session.passport;
                     obj[socket.request.session.passport.user.fbid].geo = geo;
                     obj[socket.request.session.passport.user.fbid] = JSON.stringify(obj[socket.request.session.passport.user.email]);
+                    console.log(socket.request.session.passport);
                     console.log(obj);
                     client.hmset('onlineList', obj);
                     io.emit('marker', obj);
