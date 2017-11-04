@@ -36,6 +36,10 @@ input {
     cursor: pointer;
 }
 
+#signin {
+    margin: 20px auto;
+}
+
 .btn {
     /* display: inline-block;
     font-weight: 400;
