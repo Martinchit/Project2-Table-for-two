@@ -105,6 +105,7 @@ $(document).ready(() => {
         var url = $(event.target).closest('#yes').val();
         var email = $('.choice').attr('id');
         var obj = {link : url, id : email};
+        
         console.log(obj);
         $(event.target).closest('.chatInvitation').remove();
         $('.newTag').replaceWith('<p>Matched</p>');
