@@ -101,7 +101,7 @@ module.exports = (express, app, io) => {
 
     router.get('/logout', (req,res) => {
         client.hgetall('onlineList', (err, list) => {
-            if(list !== null && list[req.user.email] !== undefined) {
+            if(list !== null && list[req.user.fbid] !== undefined) {
                 var obj = list;
                 delete obj[req.user.fbid];
                 if(Object.keys(obj).length === 0) {
