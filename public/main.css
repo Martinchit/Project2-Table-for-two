@@ -35,6 +35,8 @@ input {
     font-weight: bolder;
     cursor: pointer;
     text-align: center;
+    padding: 10px auto;
+    margin: 10px auto;
 }
 
 #signin {
