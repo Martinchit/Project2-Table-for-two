@@ -110,7 +110,7 @@ module.exports = (express, app, io) => {
                     client.del('onlineList');
                     client.hmset('onlineList', obj);
                 }
-                io.emit('delMarker', req.user.email);
+                io.emit('delMarker', req.user.fbid);
                 req.logout();
             }
         });

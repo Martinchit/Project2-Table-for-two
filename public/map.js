@@ -22,7 +22,7 @@ function initMap() {
                         });
                         list[i] = marker;
                         let info = new google.maps.InfoWindow({
-                            content : "<div class='marker'><img src=" + detail.user.photo + "><br><button class='key' value=" + detail.user.email + ">Match</button></div><br><h3>" + detail.user.name + "</h3>"
+                            content : "<div class='marker'><img src=" + detail.user.photo + "><br><button class='key' value=" + detail.user.fbid + ">Match</button></div><br><h3>" + detail.user.name + "</h3>"
                         });
                         marker.addListener('click', () => {
                             info.open(map, marker);
@@ -81,9 +81,9 @@ $(document).ready(() => {
             data.forEach(function(element) {
                 $('#users').append("<div class='user'></div>");
                 $('.user').last().append("<img src=" + element.user.photo + ">");
-                $('.user').last().append("<p'> Name : " + element.user.name + "</p>");
-                $('.user').last().append("<p'> Horoscope : " + getZodiacSign(element.user.birthday.slice(3,5), element.user.birthday.slice(0,2)) + "</p>");
-                $('.user').last().append("<p'>Distance : " + element.distance + "</p>");
+                $('.user').last().append("<p> Name : " + element.user.name + "</p>");
+                $('.user').last().append("<p> Horoscope : " + getZodiacSign(element.user.birthday.slice(3,5), element.user.birthday.slice(0,2)) + "</p>");
+                $('.user').last().append("<p>Distance : " + element.distance + "</p>");
             });
         });
     });
