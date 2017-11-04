@@ -29,6 +29,11 @@ h2 {
     flex-direction: column;
 }
 
+#signin {
+    display: flex;
+    justify-content: center;
+}
+
 input {
     width: 150px;
     font-family: 'Cinzel', serif;
