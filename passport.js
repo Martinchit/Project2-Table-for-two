@@ -13,7 +13,7 @@ module.exports = (app) => {
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "https://128.199.210.113.nip.io/auth/facebook/callback",
-        profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'friends', 'birthday','profileUrl']
+        profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'picture', 'birthday','profileUrl']
       },
       function(accessToken, refreshToken, profile, cb) {
           console.log(profile)
