@@ -90,9 +90,7 @@ module.exports = (express, app, io) => {
     router.get('/direction', (req,res) => {
         var ref = req.query;
         client.hgetall('onlineList', (err,data) => {
-            console.log(data);
             var info = JSON.parse(data[req.user.email]);
-            console.log(info);
             ref.ownLat = info.geo.lat;
             ref.ownLng = info.geo.lng;
             res.redirect("https://www.google.com.hk/maps/dir/" + ref.ownLat + "," + ref.ownLng + "/" + ref.lat + "," + ref.lng);
@@ -147,18 +145,17 @@ module.exports = (express, app, io) => {
             client.hgetall('onlineList', (err, data) => {
                 socket.request.session.passport.geo = geo;
                 if(data === null) {
-                    var obj = {};
+                    let obj = {};
                     obj[socket.request.session.passport.user.fbid] = socket.request.session.passport;
                     obj[socket.request.session.passport.user.fbid].geo = geo;
                     obj[socket.request.session.passport.user.fbid] = JSON.stringify(obj[socket.request.session.passport.user.email]);
                     client.hmset('onlineList', obj);
                     io.emit('marker', obj);
                 } else {
-                    var obj = {};
+                    let obj = {};
                     obj[socket.request.session.cookie] = socket.request.session.passport;
                     obj[socket.request.session.cookie].geo = geo;
                     var newObj = data;
-                    console.log(newObj);
                     newObj[socket.request.session.passport.user.fbid] = JSON.stringify(obj[socket.request.session.cookie]);
                     client.del('onlineList');
                     client.hmset('onlineList', newObj);

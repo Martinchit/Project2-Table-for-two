@@ -46,7 +46,6 @@ $(document).ready(() => {
         });
     });
     $('body').on('click', '.go', (event) => {
-        console.log('hi');
         var obj = {
             photo : personalInfo.photo,
             shopLocation : $(event.target).val(),

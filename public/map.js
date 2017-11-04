@@ -105,8 +105,6 @@ $(document).ready(() => {
         var url = $(event.target).closest('#yes').val();
         var fbid = $('.choice').attr('id');
         var obj = {link : url, id : fbid};
-        
-        console.log(obj);
         $(event.target).closest('.chatInvitation').remove();
         $('.newTag').replaceWith('<p>Matched</p>');
         socket.emit('talk', obj);
@@ -120,7 +118,6 @@ $(document).ready(() => {
 });
 
 socket.on('talkAccepted', (data) => {
-    console.log(data);
     window.open(data);
 });
 
