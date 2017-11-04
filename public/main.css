@@ -29,12 +29,6 @@ h2 {
     flex-direction: column;
 }
 
-.list {
-    display: flex;
-    justify-content: space-evenly;
-
-}
-
 input {
     width: 150px;
     font-family: 'Cinzel', serif;
