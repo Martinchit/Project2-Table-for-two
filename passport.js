@@ -16,6 +16,7 @@ module.exports = (app) => {
         profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'friends', 'birthday','profileUrl']
       },
       function(accessToken, refreshToken, profile, cb) {
+          console.log(profile)
           bcrypt.hashPassword(profile.id).then((id) => {
               Model.user.findOrCreate({where : {
                     profileURL : profile._json.link
