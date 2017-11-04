@@ -61,6 +61,8 @@ input {
     width: 100%; */
     text-align: center;
     margin: 10px auto;
+    padding: 0;
+    border: 0;
 }
 
 #foot {
