@@ -90,7 +90,7 @@ module.exports = (express, app, io) => {
     router.get('/direction', (req,res) => {
         var ref = req.query;
         client.hgetall('onlineList', (err,data) => {
-            var info = JSON.parse(data[req.user.email]);
+            var info = JSON.parse(data[req.user.fbid]);
             ref.ownLat = info.geo.lat;
             ref.ownLng = info.geo.lng;
             res.redirect("https://www.google.com.hk/maps/dir/" + ref.ownLat + "," + ref.ownLng + "/" + ref.lat + "," + ref.lng);
