@@ -12,7 +12,7 @@ module.exports = (app) => {
     Passport.use('facebook', new FacebookStrategy({
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: "https://128.199.210.113.nip.io/auth/facebook/callback",
+        callbackURL: "https://www.tablefortwo.website/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'picture', 'birthday','profileUrl']
       },
       function(accessToken, refreshToken, profile, cb) {
