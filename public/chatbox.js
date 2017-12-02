@@ -30,7 +30,7 @@ $(document).ready(() => {
     $('#check').on('click', (event) => {
         var perference = $('#location').val().replace(/\s/g, "");
         $('#location').val('');
-        $.post('https://128.199.210.113.nip.io/search', {
+        $.post('https://www.tablefortwo.website/search', {
             location : perference
         }).done((data) => {
             $('#restaurant').children().remove();
@@ -63,7 +63,7 @@ $(document).ready(() => {
         $('#messages div').last().append('<img>');
         $('#messages div img').last().attr('src', data.photo);
         $('#messages div').last().append("<li><p> Lets go " + "<a>" + data.shopName + "</a>" + "</p></li>");
-        $('#messages div a').last().attr('href','https://128.199.210.113.nip.io/direction?' + query);
+        $('#messages div a').last().attr('href','https://www.tablefortwo.website/direction?' + query);
         $('#messages div a').last().attr('target','_blank');
         var height = $('#messages').height();
         $('#chat').scrollTop(height);

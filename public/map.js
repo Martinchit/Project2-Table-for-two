@@ -72,7 +72,7 @@ $(document).ready(() => {
         event.preventDefault();
         var distance = Number($(event.target).val().replace(/\D/g, '')) * 1000;
         var location = pos;
-        $.post('https://128.199.210.113.nip.io/onlineuser', {
+        $.post('https://www.tablefortwo.website/onlineuser', {
             lat : location.lat,
             lng : location.lng,
             perference : distance
@@ -93,7 +93,7 @@ $(document).ready(() => {
         $(event.target).replaceWith("<p class='newTag'>Wait for reply</p>");
     });
     socket.on('talkInvitation', (data) => {
-        var url = 'https://128.199.210.113.nip.io/chat?' + data.uuid;
+        var url = 'https://www.tablefortwo.website/chat?' + data.uuid;
         $('#map').append("<div class='chatInvitation'></div>");
         $('.chatInvitation').append("<img class='photo' src=" + data.user.photo + ">");
         $('.chatInvitation').append("<p>" + data.user.firstName + " : <br>Do you wanna have dinner together tonight?</p>");
