@@ -27,7 +27,7 @@ module.exports = (express, app, io) => {
         res.redirect('/error');
     }
 
-    router.get('/auth/facebook', passport.authenticate('facebook', {scope : ['user_birthday', 'email']}));
+    router.get('/auth/facebook', passport.authenticate('facebook', {scope : ['email']}));
 
     router.get('/auth/facebook/callback', passport.authenticate('facebook', {
         successRedirect : '/profile',

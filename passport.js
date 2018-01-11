@@ -26,7 +26,7 @@ module.exports = (app) => {
                     gender : gender(profile._json.gender),
                     photo : profile._json.picture.data.url,
                     fbid : id,
-                    birthday : profile._json.birthday,
+                    // birthday : profile._json.birthday,
                     email : profile._json.email
                 }}).spread((user, created) => {
                     let result = user || created;
