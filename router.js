@@ -27,6 +27,13 @@ module.exports = (express, app, io) => {
         res.redirect('/error');
     }
 
+    router.get('/auth/facebook', passport.authenticate('facebook', {scope : ['user_birthday', 'email']}));
+
+    router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+        successRedirect : '/profile',
+        failureRedirect : '/error'
+    }));
+
     router.get('/', (req,res) => {
         res.render('home');
     });
@@ -114,13 +121,6 @@ module.exports = (express, app, io) => {
         });
         res.render('logout', {layout : 'logoutPage'});
     });
-
-    router.get('/auth/facebook', passport.authenticate('facebook', {scope : ['user_birthday', 'email']}));
-
-    router.get('/auth/facebook/callback', passport.authenticate('facebook', {
-        successRedirect : '/profile',
-        failureRedirect : '/error'
-    }));
 
     io.on('connection', function(socket) {
         socket.on('socketId', () => {
