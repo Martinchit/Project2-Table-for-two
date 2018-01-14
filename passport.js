@@ -13,7 +13,7 @@ module.exports = (app) => {
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "https://www.tablefortwo.website/auth/facebook/callback",
-        profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'picture', 'birthday','profileUrl']
+        profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'picture','profileUrl']
       },
       function(accessToken, refreshToken, profile, cb) {
           bcrypt.hashPassword(profile.id).then((id) => {
@@ -29,8 +29,7 @@ module.exports = (app) => {
                     // birthday : profile._json.birthday,
                     email : profile._json.email
                 }}).spread((user, created) => {
-                    let result = user || created;
-                    return cb(null, result);
+                    return cb(null, user);
                 }).catch((err) => {console.log(err)});
       }).catch((err) => {console.log(err)});
     }));
