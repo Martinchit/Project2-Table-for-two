@@ -25,7 +25,7 @@ module.exports = (app) => {
                     lastName: profile._json.last_name,
                     gender : gender(profile._json.gender),
                     photo : profile._json.picture.data.url,
-                    fbid : id,
+                    fbid : id, 
                     // birthday : profile._json.birthday,
                     email : profile._json.email
                 }}).spread((user, created) => {
