@@ -17,9 +17,8 @@ module.exports = (app) => {
       },
       function(accessToken, refreshToken, profile, cb) {
           bcrypt.hashPassword(profile.id).then((id) => {
-              console.log(profile)
               Model.user.findOrCreate({where : {
-                    email : profile._json.email
+                    email : profile.emails[0].value
                 }, defaults : {
                     name : profile._json.name,
                     firstName : profile._json.first_name,
@@ -30,7 +29,6 @@ module.exports = (app) => {
                     // birthday : profile._json.birthday,
                     email : profile._json.email
                 }}).spread((user, created) => {
-                    console.log(user)
                     return cb(null, user);
                 }).catch((err) => {
                     console.log(err)
