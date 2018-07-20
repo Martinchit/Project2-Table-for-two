@@ -75,23 +75,15 @@ module.exports = (express, app, io) => {
     router.post('/search', (req, res) => {
         if(req.body.location !== undefined) {
             var perference = req.body.location;
-            var clientId = process.env.yelp_clientId;
-            var clientSecret = process.env.yelp_clientSecret;
             const searchRequest = {
                 location : perference,
-                limit : 15,
-                sort: 'review_count'
+                limit : 15
             };
-            yelp.accessToken(clientId, clientSecret).then(response => {
-                const client = yelp.client(response.jsonBody.access_token);
-                client.search(searchRequest).then(response => {
-                    res.send(response.jsonBody.businesses);
-                });
-            }).catch(err => {
-                console.log(err);
+            const client = yelp.client(process.env.yelp_apiKey);
+            client.search(searchRequest).then(response => {
+                return response.jsonBody.businesses;
             });
         }
-        
     });
 
     router.get('/direction', (req,res) => {
