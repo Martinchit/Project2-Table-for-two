@@ -17,6 +17,7 @@ module.exports = (app) => {
       },
       function(accessToken, refreshToken, profile, cb) {
           bcrypt.hashPassword(profile.id).then((id) => {
+              console.log(profile)
               Model.user.findOrCreate({where : {
                     email : profile._json.email
                 }, defaults : {
