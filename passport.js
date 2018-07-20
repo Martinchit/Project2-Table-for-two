@@ -32,6 +32,7 @@ module.exports = (app) => {
                     console.log(user)
                     return cb(null, user);
                 }).catch((err) => {
+                    console.log(123)
                     console.log(err)
                 });
       }).catch((err) => {console.log(err)});
