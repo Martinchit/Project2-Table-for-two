@@ -68,7 +68,7 @@ module.exports = (express, app, io) => {
         });
     });
 
-    router.get('/chat', (req,res) => {
+    router.get('/chat', isLoggedIn, (req,res) => {
         res.render('chat', {layout : 'chatbox'});
     });
 
