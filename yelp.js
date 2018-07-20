@@ -6,7 +6,6 @@ require('dotenv').config();
 
 module.exports = (place) => {
     var perference = place + ',hongkong';
-    console.log(perference);
     const searchRequest = {
         location : perference,
         limit : 15
