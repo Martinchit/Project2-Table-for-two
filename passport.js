@@ -29,6 +29,7 @@ module.exports = (app) => {
                     // birthday : profile._json.birthday,
                     email : profile._json.email
                 }}).spread((user, created) => {
+                    console.log(created)
                     return cb(null, user);
                 }).catch((err) => {
                     console.log(err)
