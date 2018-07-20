@@ -43,7 +43,7 @@ module.exports = (express, app, io) => {
     });
 
     router.get('/profile', isLoggedIn, (req,res) => {
-        profile = req.user;
+        // profile = req.user;
         req.user.layout = 'profile';
         res.render('userProfile', req.user);
     });

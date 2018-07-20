@@ -23,10 +23,10 @@ module.exports = (app) => {
                     name : profile._json.name,
                     firstName : profile._json.first_name,
                     lastName: profile._json.last_name,
-                    // gender : gender(profile._json.gender),
+                    gender : gender(profile._json.gender),
                     photo : profile._json.picture.data.url,
                     fbid : id, 
-                    // birthday : profile._json.birthday,
+                    birthday : profile._json.birthday,
                     email : profile._json.email
                 }}).spread((user, created) => {
                     return cb(null, user);
