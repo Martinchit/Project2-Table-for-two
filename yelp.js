@@ -12,6 +12,7 @@ module.exports = (place) => {
     };
     const client = yelp.client(process.env.yelp_apiKey);
     client.search(searchRequest).then(response => {
+        console.log(response.jsonBody.businesses)
         return response.jsonBody.businesses;
     });
 };
