@@ -74,15 +74,15 @@ module.exports = (express, app, io) => {
 
     router.post('/search', (req, res) => {
         if(req.body.location !== undefined) {
-            // var perference = req.body.location + ',hongkong';
-            // const searchRequest = {
-            //     location : perference,
-            //     limit : 15
-            // };
-            // const client = yelp.client(process.env.yelp_apiKey);
-            // client.search(searchRequest).then(response => {
-                res.json(yelp(req.body.location));
-            // });
+            var perference = req.body.location + ',hongkong';
+            const searchRequest = {
+                location : perference,
+                limit : 15
+            };
+            const client = yelp.client(process.env.yelp_apiKey);
+            client.search(searchRequest).then(response => {
+                res.json(response.jsonBody.businesses);
+            });
         }
     });
 
