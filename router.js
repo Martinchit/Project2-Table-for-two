@@ -2,7 +2,7 @@ const passport = require('passport');
 const axios = require('axios');
 const Model = require('./models');
 const redis = require('redis');
-const { yelp } = require('./yelp');
+const yelp = require('./yelp');
 var haversine = require('haversine-distance');
 require('dotenv').config();
 
