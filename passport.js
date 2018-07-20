@@ -13,13 +13,13 @@ module.exports = (app) => {
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "https://www.tablefortwo.website/auth/facebook/callback",
-        profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'picture','user_link']
+        profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'picture','profileUrl']
       },
       function(accessToken, refreshToken, profile, cb) {
         console.log(profile)
           bcrypt.hashPassword(profile.id).then((id) => {
               Model.user.findOrCreate({where : {
-                    profileURL : profile._json.link
+                    email : profile._json.email
                 }, defaults : {
                     name : profile._json.name,
                     firstName : profile._json.first_name,
