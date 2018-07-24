@@ -18,7 +18,7 @@ module.exports = (app) => {
       async (accessToken, refreshToken, profile, cb) => {
           bcrypt.hashPassword(profile.id).then((id) => {
               try {
-                let user =  await Model.user.findOne({where: {email: 'hello'}});
+                let user =  await Model.user.findOne({where: {email: profile._json.email}});
                 if(user === null) {
                     const newUser = await Model.user.create({
                         name : profile._json.name,
