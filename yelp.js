@@ -17,11 +17,15 @@
 // };
 
 const Model = require('./models');
+const bcrypt = require('./bcrypt');
 
 (async () => {
-    Model.user.findOne({where: {email: 'hello'}}).then((data) => {
-        console.log(data)
-    });
+    // Model.user.findOne({where: {email: 'hello'}}).then((data) => {
+    //     console.log(data)
+    // });
+
+    const id = await bcrypt.hashPassword('123')
+    console.log(id)
     // console.log(a === null)
     // done();
 })()

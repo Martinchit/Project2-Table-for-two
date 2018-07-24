@@ -15,10 +15,9 @@ module.exports = (app) => {
         callbackURL: "https://www.tablefortwo.website/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'picture','profileUrl']
       },
-      async (accessToken, refreshToken, profile, cb) => {
+    function(accessToken, refreshToken, profile, cb) {
           bcrypt.hashPassword(profile.id).then((id) => {
-              try {
-                await Model.user.findOne({where: {email: profile._json.email}}).then((user) => {
+                 Model.user.findOne({where: {email: profile._json.email}}).then((user) => {
                     if(user === null) {
                         const newUser = await Model.user.create({
                             name : profile._json.name,
@@ -34,10 +33,9 @@ module.exports = (app) => {
                     } else {
                         return cb(null, user.dataValues)
                     }
-                })
-              } catch(err) {
-                console.log(err)
-              }
+                }).catch(err) {
+                    console.log(err)
+                }
               
               
             //   Model.user.findOrCreate({where : {
