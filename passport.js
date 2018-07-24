@@ -28,8 +28,9 @@ module.exports = (app) => {
                             fbid : id, 
                             // birthday : profile._json.birthday,
                             email : profile._json.email
+                        }).then((data) => {
+                            return cb(null, data.dataValues);  
                         })
-                        return cb(null, newUser.dataValues);  
                     } else {
                         return cb(null, user.dataValues)
                     }
