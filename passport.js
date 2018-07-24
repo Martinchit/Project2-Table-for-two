@@ -34,8 +34,8 @@ module.exports = (app) => {
                 } else {
                     return cb(null, user.dataValues)
                 }
-              } catch {
-
+              } catch(err) {
+                console.log(err)
               }
               
               
