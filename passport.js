@@ -32,6 +32,11 @@ module.exports = (app) => {
                     })
                     return cb(null, newUser.dataValues);  
                 } else {
+                    if(user.dataValues.photo !== profile._json.picture.data.url) {
+                        await Model.user.update({photo: profile._json.picture.data.url}, {where: {email: profile._json.email}});
+                        const updatedUser = await Model.user.findOne({where: {email: profile._json.email}});
+                        return cb(null, updatedUser.dataValues);
+                    }
                     return cb(null, user.dataValues)
                 }
             } catch(err) {
