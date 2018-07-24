@@ -19,8 +19,10 @@
 const Model = require('./models');
 
 (async () => {
-    let a =  await Model.user.findOne({where: {email: 'J'}});
-    console.log(a === null)
+    Model.user.findOne({where: {email: 'hello'}}).then((data) => {
+        console.log(data)
+    });
+    // console.log(a === null)
     // done();
 })()
 

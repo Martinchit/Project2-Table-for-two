@@ -18,22 +18,23 @@ module.exports = (app) => {
       async (accessToken, refreshToken, profile, cb) => {
           bcrypt.hashPassword(profile.id).then((id) => {
               try {
-                let user =  await Model.user.findOne({where: {email: profile._json.email}});
-                if(user === null) {
-                    const newUser = await Model.user.create({
-                        name : profile._json.name,
-                        firstName : profile._json.first_name,
-                        lastName: profile._json.last_name,
-                        // gender : gender(profile._json.gender),
-                        photo : profile._json.picture.data.url,
-                        fbid : id, 
-                        // birthday : profile._json.birthday,
-                        email : profile._json.email
-                    })
-                    return cb(null, newUser.dataValues);  
-                } else {
-                    return cb(null, user.dataValues)
-                }
+                await Model.user.findOne({where: {email: profile._json.email}}).then((user) => {
+                    if(user === null) {
+                        const newUser = await Model.user.create({
+                            name : profile._json.name,
+                            firstName : profile._json.first_name,
+                            lastName: profile._json.last_name,
+                            // gender : gender(profile._json.gender),
+                            photo : profile._json.picture.data.url,
+                            fbid : id, 
+                            // birthday : profile._json.birthday,
+                            email : profile._json.email
+                        })
+                        return cb(null, newUser.dataValues);  
+                    } else {
+                        return cb(null, user.dataValues)
+                    }
+                })
               } catch(err) {
                 console.log(err)
               }

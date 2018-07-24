@@ -35,7 +35,7 @@
     "passport-local": "^1.0.0",
     "pg": "^7.3.0",
     "redis": "^2.8.0",
-    "sequelize": "4.13.5",
+    "sequelize": "^4.13.5",
     "socket.io": "^2.0.3",
     "uuid": "^3.1.0",
     "yelp-fusion": "^1.0.3"
