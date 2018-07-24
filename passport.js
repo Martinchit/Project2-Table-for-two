@@ -15,24 +15,46 @@ module.exports = (app) => {
         callbackURL: "https://www.tablefortwo.website/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'name', 'gender', 'email', 'picture','profileUrl']
       },
-      function(accessToken, refreshToken, profile, cb) {
+      async (accessToken, refreshToken, profile, cb) => {
           bcrypt.hashPassword(profile.id).then((id) => {
-              Model.user.findOrCreate({where : {
-                    email : profile._json.email
-                }, defaults : {
-                    name : profile._json.name,
-                    firstName : profile._json.first_name,
-                    lastName: profile._json.last_name,
-                    // gender : gender(profile._json.gender),
-                    photo : profile._json.picture.data.url,
-                    fbid : id, 
-                    // birthday : profile._json.birthday,
-                    email : profile._json.email
-                }}).spread((user, created) => {
-                    return cb(null, user);
-                }).catch((err) => {
-                    console.log(err)
-                });
+              try {
+                let user =  await Model.user.findOne({where: {email: 'hello'}});
+                if(user === null) {
+                    const newUser = await Model.user.create({
+                        name : profile._json.name,
+                        firstName : profile._json.first_name,
+                        lastName: profile._json.last_name,
+                        // gender : gender(profile._json.gender),
+                        photo : profile._json.picture.data.url,
+                        fbid : id, 
+                        // birthday : profile._json.birthday,
+                        email : profile._json.email
+                    })
+                    return cb(null, newUser.dataValues);  
+                } else {
+                    return cb(null, user.dataValues)
+                }
+              } catch {
+
+              }
+              
+              
+            //   Model.user.findOrCreate({where : {
+            //         email : profile._json.email
+            //     }, defaults : {
+            //         name : profile._json.name,
+            //         firstName : profile._json.first_name,
+            //         lastName: profile._json.last_name,
+            //         // gender : gender(profile._json.gender),
+            //         photo : profile._json.picture.data.url,
+            //         fbid : id, 
+            //         // birthday : profile._json.birthday,
+            //         email : profile._json.email
+            //     }}).spread((user, created) => {
+            //         return cb(null, user);
+            //     }).catch((err) => {
+            //         console.log(err)
+            //     });
       }).catch((err) => {console.log(err)});
     }));
     
