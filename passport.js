@@ -19,7 +19,7 @@ module.exports = (app) => {
           bcrypt.hashPassword(profile.id).then((id) => {
                  Model.user.findOne({where: {email: profile._json.email}}).then((user) => {
                     if(user === null) {
-                        const newUser = await Model.user.create({
+                        const newUser = Model.user.create({
                             name : profile._json.name,
                             firstName : profile._json.first_name,
                             lastName: profile._json.last_name,
