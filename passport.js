@@ -33,9 +33,9 @@ module.exports = (app) => {
                     } else {
                         return cb(null, user.dataValues)
                     }
-                }).catch(err) {
+                }).catch((err) => {
                     console.log(err)
-                }
+                })
               
               
             //   Model.user.findOrCreate({where : {
