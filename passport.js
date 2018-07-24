@@ -37,29 +37,6 @@ module.exports = (app) => {
             } catch(err) {
                 console.log(err)
             }
-                    
-                // }).catch((err) => {
-                    
-                // })
-              
-              
-            //   Model.user.findOrCreate({where : {
-            //         email : profile._json.email
-            //     }, defaults : {
-            //         name : profile._json.name,
-            //         firstName : profile._json.first_name,
-            //         lastName: profile._json.last_name,
-            //         // gender : gender(profile._json.gender),
-            //         photo : profile._json.picture.data.url,
-            //         fbid : id, 
-            //         // birthday : profile._json.birthday,
-            //         email : profile._json.email
-            //     }}).spread((user, created) => {
-            //         return cb(null, user);
-            //     }).catch((err) => {
-            //         console.log(err)
-            //     });
-    //   }).catch((err) => {console.log(err)});
     }));
     
     Passport.serializeUser(function(user, done) {
