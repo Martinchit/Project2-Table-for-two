@@ -1,7 +1,3 @@
-# Table for Two
-
-[Check it online](https://128.199.210.113.nip.io/)
-
 # Table for Two - Dating Application built with SSR
 
 Table for Two is a dating for user to look for a random mate to have dinner together with restaurant suggestions provided on the website. It is a server-side rendering web applcaiton. For latest version, feel free to check on https://www.tablefortwo.website/.
